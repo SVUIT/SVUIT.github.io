@@ -1,10 +1,15 @@
 * {
-    transition-duration: 500ms;
+    scroll-behavior: smooth;
+    transition-duration: 0.5s;
 }
 body {
     margin: 0;
     padding: 0;
     outline: 0;
+    height: 100%;
+}
+body::-webkit-scrollbar{
+    display: none;
 }
 .logo {
     font-family: 'Quicksand', bold;
@@ -40,6 +45,15 @@ body {
     background: linear-gradient(90deg, #6a11cb, #2575fc);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+.rectangle763 {
+    width: 100%;
+    position: relative;
+    background-color: #27262b;
+    height: 680px;
+}
+.img {
+    width: 100px;
 }
 
 .menu .nav-link:hover::after {
@@ -93,3 +107,189 @@ body {
         padding: 10px 15px;
     }
 }
+
+.jumbotron {
+    background: #27262b;
+    border-radius: 0;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    font-family: 'Fjalla One', sans-serif;
+}
+
+.gradient-text {
+    font-family: 'Fjalla One';
+    font-size: 40px;
+    font-weight: 500;
+    background: linear-gradient(90deg, #6a11cb, #2575fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.box-shadow {
+    border: 0;
+    filter: drop-shadow(4px 0.22px 0 grey);
+}
+.custom-button{
+    font-family: 'Quicksand', 700;
+    padding: 10px;
+    border-radius: 20px;
+    border-color: #fff;
+    color:#fff;
+}
+.custom-button:hover {
+    
+    border-color:#6a11cb;
+    background: #6a11cb;
+    transition: background 0.6s ease;
+    color: #fff;
+}
+
+.features-section {
+    display: flex;
+    justify-content: space-around;
+    padding: 50px 20px;
+    background: #27262B;
+}
+
+.feature {
+    max-width: 400px;
+    background: transparent;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+}
+
+.feature h3 {
+    font-family: 'Fjalla One', sans-serif;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.feature p {
+    font-family: 'Quicksand', sans-serif;
+    color: white;
+    line-height: 1.6;
+}
+
+.about-section {
+    text-align: center;
+    background-color: #27262B;
+    padding: 50px 0;
+    color: white;
+}
+
+.about-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+}
+
+.image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image-box {
+    position: relative;
+    margin: 15px 0;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.image-box::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border-radius: 12px;
+    z-index: -1;
+}
+
+.image-box img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+.image-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.image-box {
+    display: flex;
+    justify-content: center;
+}
+
+.box-1 {
+    margin-right: 10%;
+    justify-content: flex-start; /* Align left */
+}
+
+.box-2 {
+    margin-left: 10%;
+    justify-content: flex-end;
+}
+.border-1 {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: 10px linear-gradient(90deg, #6a11cb, #2575fc) solid;
+    z-index:999;
+}
+.border-2 {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border: 10px linear-gradient(90deg, #6a11cb, #2575fc) solid;
+    z-index:999;
+}    
+
+.image-box img {
+    width: 267px;   
+    height: 177px; 
+    border-radius: 10px;
+}
+.meetourteam {
+    position: relative;
+    font-size: 48px;
+    font-family: 'Fjalla One';
+    text-align: center;
+    filter: drop-shadow(0px 1px 4px rgba(0, 0, 0, 0.25));
+    color: #000;
+}
+.footer {
+    background-color: #27262b;
+    position: relative;
+    font-family: 'Fjalla One';
+    text-align: center;
+    filter: drop-shadow(0px 1px 4px rgba(0, 0, 0, 0.25));
+    height: 100%;
+    color: #fff;
+}
+.role {
+    text-align: center;
+    font-family: 'Fjalla One';
+    color: #000;
+    font-size: 28px;
+}
+.name {
+    font-size: 16px;
+}
+
+.footer-nav{
+    padding: 10px 0;
+    position: relative;
+    bottom: 50%;
+    text-decoration: none; 
+    color: #fff;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 16px;
+}
+
+.footer-nav:hover{
+    color: #fff;
+    text-decoration: none;
+}
+
