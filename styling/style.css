@@ -2,12 +2,21 @@
     scroll-behavior: smooth;
     transition-duration: 0.5s;
 }
-body {
-    margin: 0;
-    padding: 0;
-    outline: 0;
-    height: 100%;
+h1,h2,h3,p,span,div,a{
+    text-wrap: balance;
 }
+ html,body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        outline: 0;
+        overflow-x: hidden;
+}
+img {
+    max-width: 100%;
+}
+
 body::-webkit-scrollbar{
     display: none;
 }
@@ -53,7 +62,7 @@ body::-webkit-scrollbar{
     height: 680px;
 }
 .img {
-    width: 100px;
+    width: 96px;
 }
 
 .menu .nav-link:hover::after {
@@ -61,12 +70,26 @@ body::-webkit-scrollbar{
 }
 
 @media (max-width: 1200px) {
+    html,body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        outline: 0;
+    }
     .menu {
         font-size: 0.9rem;
     }
 }
 
 @media (max-width: 992px) {
+    html,body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        outline: 0;
+    }
     .menu {
         flex-direction: row;
         align-items: flex-end;
@@ -79,6 +102,13 @@ body::-webkit-scrollbar{
 }
 
 @media (max-width: 768px) {
+    html,body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        outline: 0;
+    }
     .navbar-brand {
         font-size: 1.2rem;
     }
@@ -95,6 +125,13 @@ body::-webkit-scrollbar{
 }
 
 @media (max-width: 576px) {
+    html,body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        outline: 0;
+    }
     .menu {
         font-size: 0.8rem;
     }
@@ -115,6 +152,7 @@ body::-webkit-scrollbar{
     margin: 0;
     padding: 0;
     font-family: 'Fjalla One', sans-serif;
+
 }
 
 .gradient-text {
@@ -183,9 +221,7 @@ body::-webkit-scrollbar{
     margin-bottom: 30px;
 }
 
-.image-container {
-    display: flex;
-    flex-direction: column;
+.image-container{
     align-items: center;
 }
 
@@ -195,6 +231,10 @@ body::-webkit-scrollbar{
     border-radius: 10px;
     overflow: hidden;
     transition: transform 0.3s;
+
+    border: 10px solid;
+    border-image-source: linear-gradient(90deg, #6a11cb, #2575fc);
+    border-image-slice: 1;
 }
 
 .image-box::before {
@@ -206,12 +246,6 @@ body::-webkit-scrollbar{
     bottom: -5px;
     border-radius: 12px;
     z-index: -1;
-}
-
-.image-box img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
 }
 .image-container {
     display: flex;
@@ -226,30 +260,16 @@ body::-webkit-scrollbar{
 
 .box-1 {
     margin-right: 10%;
-    justify-content: flex-start; /* Align left */
+    justify-content: flex-start; 
 }
 
 .box-2 {
     margin-left: 10%;
     justify-content: flex-end;
 }
-.border-1 {
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    border: 10px linear-gradient(90deg, #6a11cb, #2575fc) solid;
-    z-index:999;
-}
-.border-2 {
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    border: 10px linear-gradient(90deg, #6a11cb, #2575fc) solid;
-    z-index:999;
-}    
-
 .image-box img {
     width: 267px;   
     height: 177px; 
-    border-radius: 10px;
 }
 .meetourteam {
     position: relative;
@@ -281,7 +301,6 @@ body::-webkit-scrollbar{
 .footer-nav{
     padding: 10px 0;
     position: relative;
-    bottom: 50%;
     text-decoration: none; 
     color: #fff;
     font-family: 'Quicksand', sans-serif;
@@ -292,4 +311,39 @@ body::-webkit-scrollbar{
     color: #fff;
     text-decoration: none;
 }
-
+.team-section {
+    margin-bottom: 40px;
+  }
+  .role-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #495057;
+  }
+  .team-member {
+    text-align: center;
+    background: #ffffff;
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+  }
+  .team-member:hover {
+    transform: translateY(-5px);
+  }
+  .team-photo {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    background-size: cover;
+    background-position: center top;
+  }
+  .team-name {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #343a40;
+  }
