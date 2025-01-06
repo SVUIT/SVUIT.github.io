@@ -12,7 +12,12 @@ h1,h2,h3,p,span,div,a{
         padding: 0;
         outline: 0;
         overflow-x: hidden;
+        flex: 1;
 }
+image{
+    max-width: 100%;
+}
+
 img {
     max-width: 100%;
 }
@@ -55,6 +60,68 @@ body::-webkit-scrollbar{
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
+.image-ball{
+    position: relative;
+    z-index: 999;
+    transition: transform 0.2s ease;
+    
+}
+
+.image-ball1{
+    position: absolute;
+    top: 198px; 
+    left: 426px; 
+}
+
+.image-ball2{
+    position: absolute;
+    top: 310px; 
+    left: 562px; 
+}
+
+.image-ball3{
+    position: absolute;
+    top: 372px; 
+    left: 618px; 
+}
+
+.image-ball4{
+    position: absolute;
+    top: 400px; 
+    left: 494px; 
+}
+
+.image-ball5{
+    position: absolute;
+    top: 115px; 
+    right: 488px; 
+}
+
+.image-ball6{
+    position: absolute;
+    top: 123px; 
+    right: 372px; 
+}
+
+.image-ball7{
+    position: absolute;
+    top: 276px; 
+    right: 482px; 
+}
+
+.image-ball8{
+    position: absolute;
+    top: 303px; 
+    right: 586px; 
+}
+
+.image-ball9{
+    position: absolute;
+    top: 390px; 
+    right: 528px; 
+}
+
 .rectangle763 {
     width: 100%;
     position: relative;
@@ -150,19 +217,28 @@ body::-webkit-scrollbar{
     border-radius: 0;
     overflow: hidden;
     margin: 0;
-    padding: 0;
+    padding: 100px 0 0;
     font-family: 'Fjalla One', sans-serif;
-
 }
 
 .gradient-text {
     font-family: 'Fjalla One';
-    font-size: 40px;
+    font-size: 70px;
     font-weight: 500;
     background: linear-gradient(90deg, #6a11cb, #2575fc);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
+.gradient-text-2{
+    font-family: 'Fjalla One';
+    font-size: 46px;
+    font-weight: 700;
+    background: linear-gradient(90deg, #6a11cb, #2575fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 .box-shadow {
     border: 0;
     filter: drop-shadow(4px 0.22px 0 grey);
@@ -185,7 +261,7 @@ body::-webkit-scrollbar{
 .features-section {
     display: flex;
     justify-content: space-around;
-    padding: 50px 20px;
+    padding: 500px 20px 0;
     background: #27262B;
 }
 
@@ -212,7 +288,7 @@ body::-webkit-scrollbar{
 .about-section {
     text-align: center;
     background-color: #27262B;
-    padding: 50px 0;
+    padding: 300px 0 600px;
     color: white;
 }
 
@@ -231,7 +307,6 @@ body::-webkit-scrollbar{
     border-radius: 10px;
     overflow: hidden;
     transition: transform 0.3s;
-
     border: 10px solid;
     border-image-source: linear-gradient(90deg, #6a11cb, #2575fc);
     border-image-slice: 1;
@@ -271,6 +346,34 @@ body::-webkit-scrollbar{
     width: 267px;   
     height: 177px; 
 }
+
+.background-meetourteam {
+    position: relative;
+    place-items: center;
+}
+
+.ellipse {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 193px;
+    height: 182px;
+    border-radius: 2248px;
+    background: #F8F9FF;
+    transform-origin: center;
+    transform: translate(-50%, -50%); 
+    will-change: transform, opacity;
+    overflow-x: hidden;
+}
+
+.rectangle {
+    position: absolute;
+    width: 4000px;
+    height: 2000px;
+    background: #F8F9FF;
+}
+
+
 .meetourteam {
     position: relative;
     font-size: 48px;
@@ -278,6 +381,11 @@ body::-webkit-scrollbar{
     text-align: center;
     filter: drop-shadow(0px 1px 4px rgba(0, 0, 0, 0.25));
     color: #000;
+    padding: 0;
+}
+
+.team-section{
+    padding: 50px 0 0;
 }
 .footer {
     background-color: #27262b;
