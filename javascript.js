@@ -20,10 +20,21 @@ balls.forEach((imageball, index) => {
     gsap.timeline({
         scrollTrigger: {
             trigger: imageball,
-            start: "110%",
-            end: "",
+            start: "top center",
+            end: "bottom top",
             scrub: true,
             toggleActions: "play none none none",
+            onUpdate: (self) => {
+                if (self.progress >= 0.5) { 
+                    gsap.to(imageball, {
+                        x: position.x1, y: position.y1, duration: 1 
+                    });
+                } else {
+                    gsap.to(imageball, {
+                        x: position.x2, y: position.y2, duration: 1 
+                    });
+                }
+            }
         }
     })
     .fromTo(imageball, { x: 0, y: 0, scale: 1, opacity: 1 }, { x: position.x1, y: position.y1, duration: 1 })
