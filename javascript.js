@@ -92,7 +92,7 @@ button.forEach((btn, index) => {
             scrub: true,
         }
     })
-    .fromTo(btn, { x: 0, y: 0, scale: 1, opacity: 1 }, { x: position.x1, y: position.y1, duration: 3 })
+    .fromTo(btn, { x: 0, y: 0, scale: 1, opacity: 1 }, { x: position.x1, y: position.y1, opacity: 0, duration: 3 })
 });
 
 const abouttexts = document.querySelectorAll('.about_text');
