@@ -26,7 +26,7 @@ ellipses.forEach((ellipse) => {
     gsap.timeline({
         scrollTrigger: {
             trigger: ellipse,
-            start: "top 120%", 
+            start: "top 140%", 
             end: "top 90%", 
             scrub: true,
         }
@@ -78,7 +78,7 @@ meets.forEach((meetourteam, index) => {
 
 const button = document.querySelectorAll('.btn');
 const positionsBtn = [
-    { x1: 0, y1: -50},
+    { x1: 0, y1: -150},
 ];
 
 button.forEach((btn, index) => {
@@ -87,8 +87,8 @@ button.forEach((btn, index) => {
     gsap.timeline({
         scrollTrigger: {
             trigger: btn,
-            start: "top 90%",
-            end: "bottom -50%",
+            start: "top 70%",
+            end: "bottom -30%",
             scrub: true,
         }
     })
@@ -156,22 +156,32 @@ heading.forEach((jumbotron_heading, index) => {
     .fromTo(jumbotron_heading, { x: 0, y: 0, scale: 1, opacity: 1 }, { x: position.x1, y: position.y1, opacity: 1, duration: 3 })
 });
 
-const balls = document.querySelectorAll('.ball_elemen');
+const balls = document.querySelectorAll('.ball_element');
 const positionsBall = [
-    { x1: 0, y1: 300, x2: 0, y2: 500}, 
+    { x1: 0, y1: 100}, 
+    { x1: 0, y1: 100},
+    { x1: 0, y1: 100},
+    { x1: 0, y1: 100},
+    { x1: 0, y1: 100},
+    { x1: 0, y1: 100},
+    { x1: 0, y1: 100},
+    { x1: 0, y1: 100},
+    { x1: 0, y1: 100},
 ];
 
-balls.forEach((ball_elemen, index) => {
+balls.forEach((ball_element, index) => {
     const position = positionsBall[index];
 
     gsap.timeline({
         scrollTrigger: {
-            trigger: ball_elemen,
+            trigger: ball_element,
             start: "top 1%",
             end: "bottom 1%",
             scrub: true,
         }
     })
-    .fromTo(ball_elemen, { x: 0, y: 0, scale: 1, opacity: 1 }, { x: position.x1, y: position.y1, opacity: 1, duration: 3 })
-    .to(ball_elemen, {x: position.x2, y: position.y2, opacity: 1, duration: 3 });
+    .fromTo(ball_element, { x: 0, y: 0, scale: 1, opacity: 1 }, 
+                          { x: position.x1, y: position.y1, opacity: 1, duration: 3 })
+    
 });
+
