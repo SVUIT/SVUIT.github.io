@@ -2,6 +2,7 @@
     scroll-behavior: smooth;
     transition-duration: 0.5s;
 }
+
 h1,h2,h3,p,span,div,a{
     text-wrap: balance;
 }
@@ -12,6 +13,7 @@ h1,h2,h3,p,span,div,a{
         padding: 0;
         outline: 0;
         overflow-x: hidden;
+        overflow-y: auto;
         flex: 1;
 }
 image{
@@ -61,65 +63,103 @@ body::-webkit-scrollbar{
     -webkit-text-fill-color: transparent;
 }
 
-.image-ball{
+.image_ball{
     position: relative;
-    z-index: 999;
-    transition: transform 0.2s ease;
-    
+    z-index: 1;
 }
 
-.image-ball1{
+
+.image_ball1{
     position: absolute;
     top: 198px; 
     left: 426px; 
 }
 
-.image-ball2{
+
+.image_ball2{
     position: absolute;
     top: 310px; 
     left: 562px; 
 }
 
-.image-ball3{
+.image_ball3{
     position: absolute;
     top: 372px; 
     left: 618px; 
 }
 
-.image-ball4{
+.image_ball4{
     position: absolute;
     top: 400px; 
     left: 494px; 
 }
 
-.image-ball5{
+.image_ball5{
     position: absolute;
     top: 115px; 
     right: 488px; 
 }
 
-.image-ball6{
+.image_ball6{
     position: absolute;
     top: 123px; 
     right: 372px; 
 }
 
-.image-ball7{
+.image_ball7{
     position: absolute;
     top: 276px; 
     right: 482px; 
 }
 
-.image-ball8{
+.image_ball8{
     position: absolute;
     top: 303px; 
     right: 586px; 
 }
 
-.image-ball9{
+.image_ball9{
     position: absolute;
     top: 390px; 
     right: 528px; 
+}
+ 
+
+.ellipse2 {
+    position: relative;
+    pointer-events: none;
+}
+
+.ellipse2-left {
+    position: absolute;
+    top: 0px;
+    left: -195px;
+}
+
+.ellipse2-right {
+    position: absolute;
+    top: 00px;
+    right: -195px;
+}
+
+.ellipse2-bottom {
+    position: absolute;
+    top: 350px;
+    left: 0px;
+}
+
+.ellipse3 {
+    position: relative;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.ellipse3-center {
+    position: absolute;
+    top: 423px;
+    left: -270px;
+    width: 2009.5px;
+    height: 1592px;
 }
 
 .rectangle763 {
@@ -245,11 +285,14 @@ body::-webkit-scrollbar{
 }
 .custom-button{
     font-family: 'Quicksand', 700;
+    position: relative;
     padding: 10px;
-    border-radius: 20px;
+    border-radius: 50px;
     border-color: #fff;
     color:#fff;
+    z-index: 3;
 }
+
 .custom-button:hover {
     
     border-color:#6a11cb;
