@@ -1,57 +1,9 @@
 gsap.registerPlugin(ScrollTrigger);
 
-const balls = document.querySelectorAll('.image-ball1, .image-ball2, .image-ball3, .image-ball4, .image-ball5, .image-ball6, .image-ball7, .image-ball8, .image-ball9');
-const positionsBall = [
-    { x1: 0, y1: 50, x2: 0, y2: 100, x3: 0, y3: 150, x4: 0, y4: 200, x5: 0, y5: 250, x6: 0, y6: 300, x7: 0, y7: 350, x8: 0, y8: 400, x9: 0, y9: 450 },
-    { x1: 0, y1: 400, x2: 0, y2: 500, x3: 0, y3: 600, x4: 0, y4: 700, x5: 0, y5: 800, x6: 0, y6: 900, x7: 0, y7: 1000, x8: 0, y8: 1100, x9: 0, y9: 1200 },
-    { x1: 0, y1: 400, x2: 0, y2: 500, x3: 0, y3: 600, x4: 0, y4: 700, x5: 0, y5: 800, x6: 0, y6: 900, x7: 0, y7: 1000, x8: 0, y8: 1100, x9: 0, y9: 1200 },
-    { x1: 0, y1: 400, x2: 0, y2: 500, x3: 0, y3: 600, x4: 0, y4: 700, x5: 0, y5: 800, x6: 0, y6: 900, x7: 0, y7: 1000, x8: 0, y8: 1100, x9: 0, y9: 1200 },
-    { x1: 0, y1: 400, x2: 0, y2: 500, x3: 0, y3: 600, x4: 0, y4: 700, x5: 0, y5: 800, x6: 0, y6: 900, x7: 0, y7: 1000, x8: 0, y8: 1100, x9: 0, y9: 1200 },
-    { x1: 0, y1: 400, x2: 0, y2: 500, x3: 0, y3: 600, x4: 0, y4: 700, x5: 0, y5: 800, x6: 0, y6: 900, x7: 0, y7: 1000, x8: 0, y8: 1100, x9: 0, y9: 1200 },
-    { x1: 0, y1: 400, x2: 0, y2: 500, x3: 0, y3: 600, x4: 0, y4: 700, x5: 0, y5: 800, x6: 0, y6: 900, x7: 0, y7: 1000, x8: 0, y8: 1100, x9: 0, y9: 1200 },
-    { x1: 0, y1: 400, x2: 0, y2: 500, x3: 0, y3: 600, x4: 0, y4: 700, x5: 0, y5: 800, x6: 0, y6: 900, x7: 0, y7: 1000, x8: 0, y8: 1100, x9: 0, y9: 1200 },
-    { x1: 0, y1: 400, x2: 0, y2: 500, x3: 0, y3: 600, x4: 0, y4: 700, x5: 0, y5: 800, x6: 0, y6: 900, x7: 0, y7: 1000, x8: 0, y8: 1100, x9: 0, y9: 1200 },
-
-];
-
-balls.forEach((imageball, index) => {
-    const position = positionsBall[index];
-
-    gsap.timeline({
-        scrollTrigger: {
-            trigger: imageball,
-            start: "top center",
-            end: "bottom top",
-            scrub: true,
-            toggleActions: "play none none none",
-            onUpdate: (self) => {
-                if (self.progress >= 0.5) { 
-                    gsap.to(imageball, {
-                        x: position.x1, y: position.y1, duration: 1 
-                    });
-                } else {
-                    gsap.to(imageball, {
-                        x: position.x2, y: position.y2, duration: 1 
-                    });
-                }
-            }
-        }
-    })
-    .fromTo(imageball, { x: 0, y: 0, scale: 1, opacity: 1 }, { x: position.x1, y: position.y1, duration: 1 })
-    .to(imageball, { x: position.x2, y: position.y2, duration: 1 })
-    .to(imageball, { x: position.x3, y: position.y3, duration: 1 })
-    .to(imageball, { x: position.x4, y: position.y4, duration: 1 })
-    .to(imageball, { x: position.x5, y: position.y5, duration: 1 })
-    .to(imageball, { x: position.x6, y: position.y6, duration: 1 })
-    .to(imageball, { x: position.x7, y: position.y7, duration: 1 })
-    .to(imageball, { x: position.x8, y: position.y8, duration: 1 })
-    .to(imageball, { x: position.x9, y: position.y9, duration: 1 });
-});
-
 const features = document.querySelectorAll('.feature');
 const positionsFeature = [
-    { x1: -2000, y1: 0},
-    { x1: 2000, y1: 0},
+    { x1: 0, y1: -100},
+    { x1: 0, y1: -100},
 ];
 
 features.forEach((feature, index) => {
@@ -60,12 +12,12 @@ features.forEach((feature, index) => {
     gsap.timeline({
         scrollTrigger: {
             trigger: feature,
-            start: "top center",
+            start: "top 70%",
             end: "bottom center",
             scrub: true,
         }
     })
-    .fromTo(feature, { x: 0, y: 0, scale: 1, opacity: 1 }, { x: position.x1, y: position.y1, duration: 3 })
+    .fromTo(feature, { x: 0, y: 0, scale: 1, opacity: 0 }, { x: position.x1, y: position.y1, opacity: 1, duration: 3 })
 });
 
 const ellipses = document.querySelectorAll('.ellipse');
@@ -74,7 +26,7 @@ ellipses.forEach((ellipse) => {
     gsap.timeline({
         scrollTrigger: {
             trigger: ellipse,
-            start: "top 120%", 
+            start: "top 140%", 
             end: "top 90%", 
             scrub: true,
         }
@@ -82,5 +34,154 @@ ellipses.forEach((ellipse) => {
     .fromTo(ellipse, 
         { scale: 1, opacity: 1 },
         { scale: 10, opacity: 1, duration: 0.2 });
+});
+
+const ellipse3 = document.querySelectorAll('.ellipse3');
+const positionsEllipse3 = [
+    { x1: 0, y1: -100},
+];
+
+ellipse3.forEach((ellipse3, index) => {
+    const position = positionsEllipse3[index];
+
+    gsap.timeline({
+        scrollTrigger: {
+            trigger: ellipse3,
+            start: "top -10%",
+            end: "bottom -20%",
+            scrub: true,
+        }
+    })
+    .fromTo(ellipse3, { x: 0, y: 0, scale: 1, opacity: 1 }, { x: position.x1, y: position.y1, duration: 100})
+});
+
+
+const meets = document.querySelectorAll('.meetourteam');
+const positionsMeet = [
+    { x1: 0, y1: -50},
+    { x1: 0, y1: -50},
+];
+
+meets.forEach((meetourteam, index) => {
+    const position = positionsMeet[index];
+
+    gsap.timeline({
+        scrollTrigger: {
+            trigger: meetourteam,
+            start: "top 90%",
+            end: "bottom center",
+            scrub: true,
+        }
+    })
+    .fromTo(meetourteam, { x: 0, y: 0, scale: 1, opacity: 0 }, { x: position.x1, y: position.y1, opacity: 1, duration: 3 })
+});
+
+const button = document.querySelectorAll('.btn');
+const positionsBtn = [
+    { x1: 0, y1: -150},
+];
+
+button.forEach((btn, index) => {
+    const position = positionsBtn[index];
+
+    gsap.timeline({
+        scrollTrigger: {
+            trigger: btn,
+            start: "top 70%",
+            end: "bottom -30%",
+            scrub: true,
+        }
+    })
+    .fromTo(btn, { x: 0, y: 0, scale: 1, opacity: 1 }, { x: position.x1, y: position.y1, opacity: 0, duration: 3 })
+});
+
+const abouttexts = document.querySelectorAll('.about_text');
+const positionsAboutText = [
+    { x1: 0, y1: -50},
+    { x1: 0, y1: -50},
+];
+
+abouttexts.forEach((about_text, index) => {
+    const position = positionsAboutText[index];
+
+    gsap.timeline({
+        scrollTrigger: {
+            trigger: about_text,
+            start: "top 90%",
+            end: "bottom center",
+            scrub: true,
+        }
+    })
+    .fromTo(about_text, { x: 0, y: 0, scale: 1, opacity: 0 }, { x: position.x1, y: position.y1, opacity: 1, duration: 3 })
+});
+
+const aboutimage = document.querySelectorAll('.image_container');
+const positionsAboutImage = [
+    { x1: 0, y1: -50},
+    { x1: 0, y1: -50},
+    { x1: 0, y1: -50},
+    { x1: 0, y1: -50},
+];
+
+aboutimage.forEach((image_container, index) => {
+    const position = positionsAboutImage[index];
+
+    gsap.timeline({
+        scrollTrigger: {
+            trigger: image_container,
+            start: "top 90%",
+            end: "bottom center",
+            scrub: true,
+        }
+    })
+    .fromTo(image_container, { x: 0, y: 0, scale: 1, opacity: 0 }, { x: position.x1, y: position.y1, opacity: 1, duration: 3 })
+});
+
+const heading = document.querySelectorAll('.jumbotron_heading');
+const positionsHeading = [
+    { x1: 0, y1: 100},
+];
+
+heading.forEach((jumbotron_heading, index) => {
+    const position = positionsHeading[index];
+
+    gsap.timeline({
+        scrollTrigger: {
+            trigger: jumbotron_heading,
+            start: "top 20%",
+            end: "bottom 90%",
+            scrub: true,
+        }
+    })
+    .fromTo(jumbotron_heading, { x: 0, y: 0, scale: 1, opacity: 1 }, { x: position.x1, y: position.y1, opacity: 1, duration: 3 })
+});
+
+const balls = document.querySelectorAll('.ball_element');
+const positionsBall = [
+    { x1: 0, y1: 100}, 
+    { x1: 0, y1: 100},
+    { x1: 0, y1: 100},
+    { x1: 0, y1: 100},
+    { x1: 0, y1: 100},
+    { x1: 0, y1: 100},
+    { x1: 0, y1: 100},
+    { x1: 0, y1: 100},
+    { x1: 0, y1: 100},
+];
+
+balls.forEach((ball_element, index) => {
+    const position = positionsBall[index];
+
+    gsap.timeline({
+        scrollTrigger: {
+            trigger: ball_element,
+            start: "top 1%",
+            end: "bottom 1%",
+            scrub: true,
+        }
+    })
+    .fromTo(ball_element, { x: 0, y: 0, scale: 1, opacity: 1 }, 
+                          { x: position.x1, y: position.y1, opacity: 1, duration: 3 })
+    
 });
 
