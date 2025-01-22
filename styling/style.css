@@ -440,7 +440,7 @@ body::-webkit-scrollbar{
 }
 
 .meetourteam_section {
-    padding: 1000px 0px 5px;
+    padding: 200px 0px 5px;
     background: #27262b; 
     transition: background-color 0.5s ease; 
   }

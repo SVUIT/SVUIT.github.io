@@ -18,7 +18,6 @@ features.forEach((feature) => {
 
 const elementsToAnimate = [
     { selector: '.meetourteam', y: 30 },
-    { selector: '.btn', y: 50 },
     { selector: '.about_text', y: 40 },
     { selector: '.image_container', y: 30 },
     { selector: '.jumbotron_heading', y: 60 },
