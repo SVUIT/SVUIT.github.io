@@ -237,59 +237,7 @@ function App() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">What Our Users Say</h2>
-            <p className="text-xl text-gray-600">Join thousands of satisfied creators using SVUIT</p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                name: "Sarah Johnson",
-                role: "Content Creator",
-                image: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=200",
-                content: "SVUIT has revolutionized my content creation process. I can now produce high-quality articles in minutes instead of hours."
-              },
-              {
-                name: "Mike Chen",
-                role: "Marketing Director",
-                image: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=200",
-                content: "The AI-generated images are incredible. Our social media engagement has increased by 300% since we started using SVUIT."
-              },
-              {
-                name: "Emma Davis",
-                role: "Small Business Owner",
-                image: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=200",
-                content: "As a solo entrepreneur, SVUIT helps me compete with larger companies by providing professional content at scale."
-              }
-            ].map((testimonial, index) => (
-              <div key={index} className="bg-gray-50 p-8 rounded-2xl hover:shadow-lg transition-shadow duration-300">
-                <div className="flex items-center mb-6">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                  ))}
-                </div>
-                <p className="text-gray-700 mb-6 italic">"{testimonial.content}"</p>
-                <div className="flex items-center space-x-4">
-                  <img 
-                    src={testimonial.image} 
-                    alt={testimonial.name}
-                    className="w-12 h-12 rounded-full object-cover"
-                  />
-                  <div>
-                    <div className="font-semibold text-gray-900">{testimonial.name}</div>
-                    <div className="text-sm text-gray-600">{testimonial.role}</div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
+     
       {/* Pricing Section */}
       <section id="pricing" className="py-24 bg-gradient-to-r from-blue-50 to-indigo-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -394,7 +342,7 @@ function App() {
                   </div>
                   <div>
                     <div className="font-semibold text-gray-900">Email Us</div>
-                    <div className="text-gray-600">hello@svuit.com</div>
+                    <div className="text-gray-600">contact@svuit.org</div>
                   </div>
                 </div>
 
@@ -404,7 +352,7 @@ function App() {
                   </div>
                   <div>
                     <div className="font-semibold text-gray-900">Call Us</div>
-                    <div className="text-gray-600">+1 (555) 123-4567</div>
+                    <div className="text-gray-600">Coming soon</div>
                   </div>
                 </div>
 
@@ -414,7 +362,7 @@ function App() {
                   </div>
                   <div>
                     <div className="font-semibold text-gray-900">Visit Us</div>
-                    <div className="text-gray-600">123 AI Street, Tech City, TC 12345</div>
+                    <div className="text-gray-600">Coming soon5</div>
                   </div>
                 </div>
               </div>
