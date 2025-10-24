@@ -92,28 +92,6 @@ const BackgroundDecorations = () => {
         pointerEvents: 'none',
         opacity: 0.3
       }} />
-      
-      {['top-left', 'top-right', 'bottom-left', 'bottom-right'].map((corner, i) => {
-        const isTop = corner.includes('top');
-        const isLeft = corner.includes('left');
-        
-        return (
-          <div key={`corner-${i}`} style={{
-            position: 'fixed',
-            [isTop ? 'top' : 'bottom']: '50px',
-            [isLeft ? 'left' : 'right']: '50px',
-            width: '200px',
-            height: '200px',
-            border: '1px solid rgba(100, 243, 255, 0.2)',
-            borderWidth: isTop ? '1px 0 0 1px' : '0 1px 1px 0',
-            borderColor: 'rgba(100, 243, 255, 0.2)',
-            transform: isTop ? 'translateX(-50%) translateY(-50%)' : 'translateX(50%) translateY(50%)',
-            zIndex: 0,
-            pointerEvents: 'none',
-            opacity: 0.5
-          }} />
-        );
-      })}
     </>
   );
 };
@@ -202,7 +180,7 @@ function App() {
 
   return (
     <div className="app-cursor" style={{ 
-      minHeight: '100vh',
+      minHeight: 'auto',
       display: 'flex',
       flexDirection: 'column',
       position: 'relative',
@@ -213,12 +191,13 @@ function App() {
       overflow: 'hidden',
       opacity: isVisible ? 1 : 0,
       transition: 'opacity 1s ease-in-out',
-      zIndex: 1
+      zIndex: 1,
+      paddingBottom: '2rem'
     }}>
       <BackgroundDecorations />
       <div style={{ 
-        flex: 1,
-        padding: '2rem 3rem',
+        flex: '0 1 auto',
+        padding: '1rem 3rem 0',
         position: 'relative',
         overflow: 'hidden',
         opacity: isVisible ? 1 : 0,
@@ -842,7 +821,6 @@ function App() {
                 ))}
               </div>
             </div>
-
             <div style={{
               width: '100vw',
               position: 'relative',
@@ -854,26 +832,29 @@ function App() {
               overflowX: 'hidden'
             }}>
              <footer style={{
-                  backgroundColor: 'rgba(15, 26, 38, 0.95)',
-                  padding: '2.5rem 1rem',
-                  width: '100vw',
-                  textAlign: 'center',
-                  position: 'relative',
-                  overflow: 'hidden',
-                  boxShadow: '0 -5px 25px rgba(0,0,0,0.3)',
-                  backdropFilter: 'blur(10px)',
-                  borderTop: '1px solid rgba(255, 255, 255, 0.1)'
+                backgroundColor: 'rgba(15, 26, 38, 0.98)',
+                padding: '1.5rem 1rem',
+                width: '100vw',
+                textAlign: 'center',
+                position: 'relative',
+                overflow: 'hidden',
+                boxShadow: '0 -2px 15px rgba(0,0,0,0.2)',
+                backdropFilter: 'blur(10px)',
+                borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center'
                 }}>
                 <div style={{
-                  fontSize: '3rem',
+                  fontSize: '2.2rem',
                   fontWeight: '800',
                   backgroundImage: 'linear-gradient(90deg, #7c4dff, #b388ff, #7c4dff)',
                   backgroundSize: '200% auto',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
-                  marginBottom: '2.5rem',
+                  marginBottom: '1.5rem',
                   animation: 'gradient 8s linear infinite',
-                  textShadow: '0 0 20px rgba(124, 77, 255, 0.3)'
+                  textShadow: '0 0 15px rgba(124, 77, 255, 0.2)'
                 }}>
                   STUDY VAULT OF UIT
                 </div>
@@ -882,8 +863,8 @@ function App() {
                   display: 'flex',
                   justifyContent: 'center',
                   flexWrap: 'wrap',
-                  gap: '2rem',
-                  marginBottom: '2rem'
+                  gap: '1.2rem',
+                marginBottom: '1.5rem'
                 }}>
                   <a 
                     href="https://svuit.org/mmtt" 
@@ -957,7 +938,8 @@ function App() {
                   color: '#fff',
                   fontSize: '1.5rem',
                   fontFamily: 'Quicksand, sans-serif',
-                  marginBottom: '1.5rem'
+                  marginBottom: '1rem',
+                fontSize: '1.2rem'
                 }}>
                   Stay in touch
                 </p>
@@ -965,8 +947,8 @@ function App() {
                 <div style={{
                   display: 'flex',
                   justifyContent: 'center',
-                  gap: '1.5rem',
-                  marginBottom: '2rem'
+                  gap: '1.2rem',
+                marginBottom: '1.5rem'
                 }}>
                   <a 
                     href="https://www.facebook.com/studyvault.uit" 
@@ -1061,18 +1043,18 @@ function App() {
                 }} />
                 
                 <div style={{
-                  marginTop: '2rem',
-                  color: 'rgba(255, 255, 255, 0.6)',
-                  fontSize: '0.9rem',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  gap: '1rem',
-                  flexWrap: 'wrap',
-                  paddingTop: '1.5rem',
-                  borderTop: '1px solid rgba(255, 255, 255, 0.05)'
+                  marginTop: '1.2rem',
+                color: 'rgba(255, 255, 255, 0.5)',
+                fontSize: '0.8rem',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                gap: '0.8rem',
+                flexWrap: 'wrap',
+                paddingTop: '1rem',
+                borderTop: '1px solid rgba(255, 255, 255, 0.04)'
                 }}>
-                  <span>© {new Date().getFullYear()} SVUIT MMTT</span>
+                  <span> {new Date().getFullYear()} SVUIT MMTT</span>
                   <span style={{ opacity: 0.3 }}>•</span>
                   <span>All rights reserved</span>
                 </div>
