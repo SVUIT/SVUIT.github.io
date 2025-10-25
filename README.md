@@ -17,6 +17,7 @@ Welcome to Study Vault, a modern web application built with React that serves as
 - 🌟 React Icons
 - 🎭 Framer Motion (for animations)
 - 🎨 Custom CSS with modern design patterns
+- Node v20.19
 
 ## 🚀 Getting Started
 
@@ -30,7 +31,7 @@ Welcome to Study Vault, a modern web application built with React that serves as
 
 2. Install dependencies:
    ```bash
-   npm install --legacy-peer-deps
+   npm install
    ```
 
 3. Start the development server:
