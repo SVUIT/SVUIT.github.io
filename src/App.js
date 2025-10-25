@@ -180,34 +180,31 @@ function App() {
 
   return (
     <div className="app-cursor" style={{ 
-      minHeight: 'auto',
+      minHeight: '100vh',
       display: 'flex',
       flexDirection: 'column',
       position: 'relative',
-      overflowX: 'hidden',
-      background: 'linear-gradient(135deg, #0f1a26 0%, #1a1a2e 100%)',
-      color: 'white',
-      fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif',
       overflow: 'hidden',
-      opacity: isVisible ? 1 : 0,
-      transition: 'opacity 1s ease-in-out',
+      background: 'linear-gradient(180deg, #0a0e17 0%, #0f1a26 100%)',
       zIndex: 1,
-      paddingBottom: '2rem'
+      paddingBottom: 0,
+      margin: 0
     }}>
       <BackgroundDecorations />
       <div style={{ 
         flex: '0 1 auto',
-        padding: '1rem 3rem 0',
+        padding: '0.5rem 2rem 0',
         position: 'relative',
         overflow: 'hidden',
         opacity: isVisible ? 1 : 0,
         transition: 'opacity 1s ease-in-out',
-        zIndex: 1
+        zIndex: 1,
+        marginBottom: '-1rem'
       }}>
         <div style={{
           position: 'absolute',
-          top: '1rem',
-          left: '1rem',
+          top: '0.5rem',
+          left: '0.5rem',
           zIndex: 10,
           display: 'flex',
           alignItems: 'center',
@@ -224,8 +221,8 @@ function App() {
               padding: '0.5rem',
               borderRadius: '50%',
               transition: 'all 0.3s ease',
-              width: '60px',
-              height: '60px',
+              width: '50px',
+              height: '50px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -240,11 +237,12 @@ function App() {
               src="/favicon.ico" 
               alt="Home" 
               style={{ 
-                width: '50px', 
-                height: '50px',
+                width: '40px', 
+                height: '40px',
                 objectFit: 'contain',
                 filter: 'drop-shadow(0 0 5px rgba(100, 243, 255, 0.5))',
-                transition: 'all 0.3s ease'
+                transition: 'all 0.3s ease',
+                marginTop: '0.2rem'
               }} 
             />
           </button>
@@ -272,11 +270,6 @@ function App() {
         <br />
         <br />
         <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
 
         <div style={{
           display: 'flex',
@@ -284,7 +277,7 @@ function App() {
           justifyContent: 'center',
           alignItems: 'center',
           flex: 1,
-          padding: '2rem 0',
+          padding: '6rem 0 0 0',
           position: 'relative',
           zIndex: 1
         }}>
@@ -292,16 +285,17 @@ function App() {
             <div style={{
               position: 'relative',
               textAlign: 'center',
-              marginBottom: '2rem',
-              padding: '2rem',
+              margin: '0 auto 2rem',
+              padding: '2rem 3rem',
               borderRadius: '20px',
               background: 'rgba(0, 0, 0, 0.3)',
               backdropFilter: 'blur(10px)',
               border: '1px solid rgba(255, 255, 255, 0.1)',
-              boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.37)'
+              boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
+              maxWidth: 'fit-content'
             }}>
               <h1 className="main-heading" style={{
-                fontSize: '3.5rem',
+                fontSize: '4rem',
                 fontWeight: '700',
                 margin: '0',
                 backgroundImage: 'linear-gradient(90deg, #fff, #b388ff, #7c4dff)',
@@ -311,8 +305,8 @@ function App() {
                 backgroundSize: '200% auto',
                 animation: 'gradient 8s ease infinite'
               }}>
-                <span style={{ display: 'block', fontSize: '1.6rem', marginBottom: '0.5rem', color: 'rgba(255, 255, 255, 0.8)' }}>Study Vault of</span>
-                <span style={{ display: 'block', fontSize: '4rem', lineHeight: '1' }}>UIT</span>
+                <span style={{ display: 'block', fontSize: '2.8rem', marginBottom: '0.5rem', color: 'rgba(255, 255, 255, 0.9)' }}>Study Vault of</span>
+                <span style={{ display: 'block', fontSize: '5.2rem', lineHeight: '1', marginTop: '0.5rem' }}>UIT</span>
               </h1>
             </div>
           </FadeInOnScroll>
@@ -822,19 +816,16 @@ function App() {
               </div>
             </div>
             <div style={{
-              width: '100vw',
+              width: '100%',
               position: 'relative',
-              left: '50%',
-              right: '50%',
-              marginLeft: '-50vw',
-              marginRight: '-50vw',
               zIndex: '1000',
-              overflowX: 'hidden'
+              marginTop: 'auto',
+              overflow: 'hidden'
             }}>
              <footer style={{
                 backgroundColor: 'rgba(15, 26, 38, 0.98)',
                 padding: '1.5rem 1rem',
-                width: '100vw',
+                width: '100%',
                 textAlign: 'center',
                 position: 'relative',
                 overflow: 'hidden',
@@ -862,25 +853,27 @@ function App() {
                 <div style={{
                   display: 'flex',
                   justifyContent: 'center',
-                  flexWrap: 'wrap',
-                  gap: '1.2rem',
-                marginBottom: '1.5rem'
+                  flexWrap: 'nowrap',
+                  gap: '0.8rem',
+                  marginBottom: '1.5rem',
+                  flexDirection: 'row',
+                  alignItems: 'center'
                 }}>
                   <a 
                     href="https://svuit.org/mmtt" 
                     onMouseEnter={() => setHoveredLink('docs-footer')}
                     onMouseLeave={() => setHoveredLink(null)}
                     style={{
-                      color: hoveredLink === 'docs-footer' ? '#00FFC7' : '#fff',
+                      color: hoveredLink === 'docs-footer' ? '#b388ff' : '#fff',
                       textDecoration: 'none',
-                      padding: '0.6rem 1.5rem',
+                      padding: '0.5rem 1.2rem',
                       fontSize: '1rem',
                       fontWeight: '500',
                       borderRadius: '8px',
                       transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                      background: hoveredLink === 'docs-footer' ? 'rgba(0, 255, 199, 0.1)' : 'transparent',
-                      border: '1px solid rgba(0, 255, 199, 0.1)',
-                      margin: '0 0.5rem',
+                      background: hoveredLink === 'docs-footer' ? 'rgba(179, 136, 255, 0.1)' : 'transparent',
+                      border: '1px solid rgba(179, 136, 255, 0.2)',
+                      margin: '0',
                       display: 'inline-flex',
                       alignItems: 'center',
                       gap: '0.5rem'
@@ -893,16 +886,16 @@ function App() {
                     onMouseEnter={() => setHoveredLink('contribute-footer')}
                     onMouseLeave={() => setHoveredLink(null)}
                     style={{
-                      color: hoveredLink === 'contribute-footer' ? '#00FFC7' : '#fff',
+                      color: hoveredLink === 'contribute-footer' ? '#b388ff' : '#fff',
                       textDecoration: 'none',
-                      padding: '0.6rem 1.5rem',
+                      padding: '0.5rem 1.2rem',
                       fontSize: '1rem',
                       fontWeight: '500',
                       borderRadius: '8px',
                       transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                      background: hoveredLink === 'contribute-footer' ? 'rgba(0, 255, 199, 0.1)' : 'transparent',
-                      border: '1px solid rgba(0, 255, 199, 0.1)',
-                      margin: '0 0.5rem',
+                      background: hoveredLink === 'contribute-footer' ? 'rgba(179, 136, 255, 0.1)' : 'transparent',
+                      border: '1px solid rgba(179, 136, 255, 0.2)',
+                      margin: '0',
                       display: 'inline-flex',
                       alignItems: 'center',
                       gap: '0.5rem'
@@ -915,16 +908,16 @@ function App() {
                     onMouseEnter={() => setHoveredLink('notify-footer')}
                     onMouseLeave={() => setHoveredLink(null)}
                     style={{
-                      color: hoveredLink === 'notify-footer' ? '#00FFC7' : '#fff',
+                      color: hoveredLink === 'notify-footer' ? '#b388ff' : '#fff',
                       textDecoration: 'none',
-                      padding: '0.6rem 1.5rem',
+                      padding: '0.5rem 1.2rem',
                       fontSize: '1rem',
                       fontWeight: '500',
                       borderRadius: '8px',
                       transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                      background: hoveredLink === 'notify-footer' ? 'rgba(0, 255, 199, 0.1)' : 'transparent',
-                      border: '1px solid rgba(0, 255, 199, 0.1)',
-                      margin: '0 0.5rem',
+                      background: hoveredLink === 'notify-footer' ? 'rgba(179, 136, 255, 0.1)' : 'transparent',
+                      border: '1px solid rgba(179, 136, 255, 0.2)',
+                      margin: '0',
                       display: 'inline-flex',
                       alignItems: 'center',
                       gap: '0.5rem'
@@ -933,7 +926,6 @@ function App() {
                     Thông báo
                   </a>
                 </div>
-                
                 <p style={{
                   color: '#fff',
                   fontSize: '1.5rem',
@@ -943,7 +935,6 @@ function App() {
                 }}>
                   Stay in touch
                 </p>
-                
                 <div style={{
                   display: 'flex',
                   justifyContent: 'center',
