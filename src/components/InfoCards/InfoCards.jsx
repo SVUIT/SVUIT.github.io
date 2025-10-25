@@ -26,11 +26,10 @@ const InfoCards = () => {
           <div className="card-icon">
             <FaCalendarAlt className="icon" />
           </div>
-          <h3 className="card-title">Awesome-UIT-Projects</h3>
+          <h3 className="card-title">Planner</h3>
           <p className="card-description">
-            Một kho lưu trữ tổng hợp phong phú, nơi sinh viên UIT có thể tìm thấy vô số dự án,
-            đồ án môn học, công cụ hỗ trợ, đoạn mã tham khảo và tài liệu học tập hữu ích
-            — từ những môn học nền tảng, đại cương cho đến các môn chuyên sâu thuộc từng lĩnh vực Công nghệ thông tin.
+            Công cụ quản lý thời gian và lập kế hoạch học tập thông minh, 
+            giúp sinh viên tối ưu hóa thời gian và nâng cao hiệu suất học tập.
           </p>
           <br />
           <div className="card-badge">Coming Soon in 2026</div>

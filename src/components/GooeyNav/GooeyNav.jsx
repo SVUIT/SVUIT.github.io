@@ -32,12 +32,17 @@ const GooeyNav = ({
   };
 
   const handleHover = (e, index) => {
+    e.stopPropagation(); // Prevent event bubbling
     const liEl = e.currentTarget;
     setHoverIndex(index);
-    updateEffectPosition(liEl, index);
+    // Only update effect position if not already active
+    if (activeIndex !== index) {
+      updateEffectPosition(liEl, index);
+    }
   };
   
-  const handleHoverEnd = () => {
+  const handleHoverEnd = (e) => {
+    e.stopPropagation();
     setHoverIndex(null);
   };
 
@@ -70,13 +75,14 @@ const GooeyNav = ({
       .ripple {
         position: absolute;
         border-radius: 50%;
-        background-color: rgba(255, 255, 255, 0.3);
+        background-color: rgba(255, 255, 255, 0.1);
         width: 20px;
         height: 20px;
         margin-top: -10px;
         margin-left: -10px;
         animation: ripple 0.6s linear;
         pointer-events: none;
+        z-index: 1;
       }
     `;
     document.head.appendChild(style);
@@ -104,7 +110,9 @@ const GooeyNav = ({
                 cursor: 'pointer',
                 position: 'relative',
                 overflow: 'hidden',
-                transition: 'all 0.3s ease'
+                transition: 'transform 0.3s ease, background-color 0.3s ease',
+                willChange: 'transform, background-color',
+                zIndex: 1
               }}
             >
               <span className="nav-text">

@@ -1,9 +1,74 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, Suspense, lazy } from 'react';
 import './App.css';
-import GooeyNav from './components/GooeyNav/GooeyNav';
-import StarBorder from './components/StarBorder/StarBorder';
-import InfoCards from './components/InfoCards/InfoCards';
-import FadeInOnScroll from './components/FadeInOnScroll/FadeInOnScroll';
+import { reportWebVitals } from './utils/serviceWorker';
+import { performanceConfig } from './config/performance';
+
+// Lazy load heavy components
+const GooeyNav = lazy(() => import('./components/GooeyNav/GooeyNav'));
+const InfoCards = lazy(() => import('./components/InfoCards/InfoCards'));
+const FadeInOnScroll = lazy(() => import('./components/FadeInOnScroll/FadeInOnScroll'));
+const OptimizedImage = lazy(() => import('./components/OptimizedImage/OptimizedImage'));
+
+// Custom Cursor Component
+const CustomCursor = () => {
+  const cursorDot = useRef(null);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isActive, setIsActive] = useState(false);
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setPosition({ x: e.clientX, y: e.clientY });
+    };
+
+    const handleMouseDown = () => {
+      setIsActive(true);
+      setTimeout(() => setIsActive(false), 100);
+    };
+
+    const handleLinkHover = () => {
+      if (cursorDot.current) {
+        cursorDot.current.classList.add('active');
+      }
+    };
+
+    const handleLinkLeave = () => {
+      if (cursorDot.current) {
+        cursorDot.current.classList.remove('active');
+      }
+    };
+
+    // Add event listeners
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousedown', handleMouseDown);
+    
+    // Add hover effects for interactive elements
+    const interactiveElements = document.querySelectorAll('a, button, [role="button"], [tabindex]');
+    interactiveElements.forEach(el => {
+      el.addEventListener('mouseenter', handleLinkHover);
+      el.addEventListener('mouseleave', handleLinkLeave);
+    });
+
+    return () => {
+      // Cleanup
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mousedown', handleMouseDown);
+      interactiveElements.forEach(el => {
+        el.removeEventListener('mouseenter', handleLinkHover);
+        el.removeEventListener('mouseleave', handleLinkLeave);
+      });
+    };
+  }, []);
+
+  return (
+    <div 
+      ref={cursorDot}
+      className={`cursor-dot ${isActive ? 'active' : ''}`}
+      style={{
+        transform: `translate(${position.x}px, ${position.y}px)`,
+      }}
+    />
+  );
+};
 
 const BackgroundDecorations = () => {
   const randomPositions = Array.from({ length: 20 }, () => ({
@@ -96,23 +161,89 @@ const BackgroundDecorations = () => {
   );
 };
 
+// Add resource hints for performance
+const ResourceHints = () => {
+  useEffect(() => {
+    // Add preconnect for external domains
+    performanceConfig.resourceHints.forEach(hint => {
+      const link = document.createElement('link');
+      link.rel = hint.rel;
+      link.href = hint.href;
+      if (hint.crossOrigin) link.crossOrigin = hint.crossOrigin;
+      document.head.appendChild(link);
+    });
+
+    return () => {
+      // Cleanup on unmount
+      performanceConfig.resourceHints.forEach(hint => {
+        const links = document.querySelectorAll(`link[href="${hint.href}"]`);
+        links.forEach(link => link.remove());
+      });
+    };
+  }, []);
+
+  return null;
+};
+
+// Loading component for Suspense fallback
+const LoadingFallback = () => (
+  <div style={{
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh',
+    width: '100%',
+    backgroundColor: '#0f1a26'
+  }}>
+    <div className="loader"></div>
+  </div>
+);
+
 function App() {
+  const [isVisible, setIsVisible] = useState(false);
+  const [hoveredButton, setHoveredButton] = useState(null);
+  const [hoveredLink, setHoveredLink] = useState(null);
+  
   const items = [
     { label: "Kho tài liệu", href: "https://svuit.org/mmtt" },
     { label: "Đóng góp", href: "https://svuit.org/mmtt/docs/contribute" },
     { label: "Thông báo", href: "https://svuit.org/mmtt/docs/ThongBao/index" }
   ];
 
-  const [isVisible, setIsVisible] = useState(false);
-  const [hoveredButton, setHoveredButton] = useState(null);
-  const [hoveredLink, setHoveredLink] = useState(null);
-  const containerRef = useRef(null);
-
+  // Register service worker and set up performance monitoring
   useEffect(() => {
+    // Register service worker if enabled
+    if (performanceConfig.features.serviceWorker) {
+      const { register } = require('./utils/serviceWorker');
+      register({
+        onSuccess: () => console.log('ServiceWorker registration successful'),
+        onUpdate: (registration) => {
+          console.log('New content is available; please refresh.');
+          if (window.confirm('New version available! Update now?')) {
+            const waitingServiceWorker = registration.waiting;
+            if (waitingServiceWorker) {
+              waitingServiceWorker.postMessage({ type: 'SKIP_WAITING' });
+              window.location.reload();
+            }
+          }
+        }
+      });
+    }
+
+    // Report web vitals if enabled
+    if (performanceConfig.monitoring.webVitals) {
+      reportWebVitals(console.log);
+    }
+    
+    // Set initial visibility with a small delay
     const timer = setTimeout(() => {
       setIsVisible(true);
     }, 100);
-    return () => clearTimeout(timer);
+    
+    // Cleanup function
+    return () => {
+      clearTimeout(timer);
+    };
   }, []);
 
   useEffect(() => {
@@ -158,15 +289,26 @@ function App() {
     
     const cursorStyles = document.createElement('style');
     cursorStyles.innerHTML = `
-      .app-cursor {
-        cursor: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z' fill='%23ffffff'/%3E%3Cpath d='M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5z' fill='%2300b3ff'/%3E%3C/svg%3E") 12 12, auto;
-        transition: transform 0.1s ease-out;
+      /* Hide all default cursors */
+      *, *::before, *::after, a, button, [role="button"], input, textarea, select, [tabindex] {
+        cursor: none !important;
       }
-      .app-cursor a, .app-cursor button, .app-cursor input, .app-cursor select, .app-cursor textarea, .app-cursor [role='button'] {
-        cursor: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z' fill='%23ffffff'/%3E%3Cpath d='M12 17l5-5-5-5-1.41 1.41L13.17 11H7v2h6.17l-2.58 2.59L12 17z' fill='%2364f3ff'/%3E%3C/svg%3E") 12 12, pointer !important;
-      }
-      .app-cursor:hover {
-        cursor: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z' fill='%23ffffff'/%3E%3Cpath d='M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5z' fill='%23ff64fa'/%3E%3C/svg%3E") 12 12, auto;
+      
+      /* Custom dot cursor - consistent style */
+      .cursor-dot {
+        width: 10px;
+        height: 10px;
+        background-color: var(--primary);
+        position: fixed;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition: none;
+        mix-blend-mode: difference;
+        will-change: transform;
+        left: 0;
+        top: 0;
       }
     `;
     document.head.appendChild(cursorStyles);
@@ -188,8 +330,10 @@ function App() {
       background: 'linear-gradient(180deg, #0a0e17 0%, #0f1a26 100%)',
       zIndex: 1,
       paddingBottom: 0,
-      margin: 0
+      margin: 0,
+      cursor: 'none'
     }}>
+      <CustomCursor />
       <BackgroundDecorations />
       <div style={{ 
         flex: '0 1 auto',
@@ -393,6 +537,10 @@ function App() {
             <br />
             <br />
             <br />
+            <br />
+            <br />
+            <br />
+            <br />
             <h2 style={{
               fontSize: '2.5rem',
               fontWeight: '700',
@@ -406,7 +554,7 @@ function App() {
               paddingBottom: '1rem',
               width: '100%'
             }}>
-              Giới Thiệu
+              Introduction
               <div style={{
                 content: '""',
                 position: 'absolute',
@@ -436,25 +584,24 @@ function App() {
             marginBottom: '4rem'
           }}>
             <h2 style={{
-              fontSize: '2.5rem',
-              fontWeight: '700',
-              margin: '2rem 0 0.5rem',
               backgroundImage: 'linear-gradient(90deg, #7c4dff, #b388ff)',
               backgroundClip: 'text',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               display: 'inline-block',
-              marginRight: '1rem',
+              margin: '0 1rem 0 0',
               fontSize: '46px',
-              fontFamily: 'Fjalla One, sans-serif'
+              fontFamily: 'Fjalla One, sans-serif',
+              fontWeight: 'bold'
             }}>
               About
             </h2>
             <span style={{
-              fontSize: '46px',
-              fontFamily: 'Fjalla One, sans-serif',
               color: '#fff',
-              fontWeight: 'bold'
+              fontFamily: 'Fjalla One, sans-serif',
+              fontSize: '46px',
+              fontWeight: 'bold',
+              marginLeft: '1rem'
             }}>
               our team
             </span>
@@ -928,10 +1075,9 @@ function App() {
                 </div>
                 <p style={{
                   color: '#fff',
-                  fontSize: '1.5rem',
+                  fontSize: '1.2rem',
                   fontFamily: 'Quicksand, sans-serif',
-                  marginBottom: '1rem',
-                fontSize: '1.2rem'
+                  marginBottom: '1rem'
                 }}>
                   Stay in touch
                 </p>
@@ -1034,16 +1180,14 @@ function App() {
                 }} />
                 
                 <div style={{
-                  marginTop: '1.2rem',
-                color: 'rgba(255, 255, 255, 0.5)',
-                fontSize: '0.8rem',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                gap: '0.8rem',
-                flexWrap: 'wrap',
-                paddingTop: '1rem',
-                borderTop: '1px solid rgba(255, 255, 255, 0.04)'
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  color: 'rgba(255, 255, 255, 0.7)',
+                  fontSize: '0.9rem',
+                  marginTop: '2rem',
+                  justifyContent: 'center',
+                  flexWrap: 'wrap'
                 }}>
                   <span> {new Date().getFullYear()} SVUIT MMTT</span>
                   <span style={{ opacity: 0.3 }}>•</span>
