@@ -99,7 +99,7 @@ const BackgroundDecorations = () => {
           filter: `blur(${pos.blur}px)`,
           opacity: pos.opacity,
           animation: `float ${pos.duration}s ease-in-out ${pos.delay}s infinite ${i % 2 ? 'reverse' : 'alternate'}`,
-          zIndex: 0,
+          zIndex: -2,
           pointerEvents: 'none'
         }} />
       ))}
@@ -140,7 +140,7 @@ const BackgroundDecorations = () => {
             top: `${posY}%`,
             boxShadow: `0 0 ${size * 2}px ${size}px rgba(100, 243, 255, ${opacity * 0.5})`,
             animation: `float ${duration}s ease-in-out ${delay}s infinite ${i % 2 ? 'alternate' : 'alternate-reverse'}`,
-            zIndex: 0,
+            zIndex: -2,
             pointerEvents: 'none'
           }} />
         );
@@ -153,7 +153,7 @@ const BackgroundDecorations = () => {
         right: 0,
         bottom: 0,
         background: 'repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(0, 0, 0, 0.1) 1px, rgba(0, 0, 0, 0.1) 2px)',
-        zIndex: 1,
+        zIndex: -1,
         pointerEvents: 'none',
         opacity: 0.3
       }} />
@@ -230,10 +230,6 @@ function App() {
       });
     }
 
-    // Report web vitals if enabled
-    if (performanceConfig.monitoring.webVitals) {
-      reportWebVitals(console.log);
-    }
     
     // Set initial visibility with a small delay
     const timer = setTimeout(() => {
@@ -342,7 +338,7 @@ function App() {
         overflow: 'hidden',
         opacity: isVisible ? 1 : 0,
         transition: 'opacity 1s ease-in-out',
-        zIndex: 1,
+        zIndex: 2, // Adjusted z-index
         marginBottom: '-1rem'
       }}>
         <div style={{
@@ -365,8 +361,8 @@ function App() {
               padding: '0.5rem',
               borderRadius: '50%',
               transition: 'all 0.3s ease',
-              width: '50px',
-              height: '50px',
+              width: '70px',
+              height: '70px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -381,8 +377,8 @@ function App() {
               src="/favicon.ico" 
               alt="Home" 
               style={{ 
-                width: '40px', 
-                height: '40px',
+                width: '50px', 
+                height: '50px',
                 objectFit: 'contain',
                 filter: 'drop-shadow(0 0 5px rgba(100, 243, 255, 0.5))',
                 transition: 'all 0.3s ease',
@@ -414,6 +410,9 @@ function App() {
         <br />
         <br />
         <br />
+        <br />
+        <br />
+        <br />
 
         <div style={{
           display: 'flex',
@@ -423,7 +422,7 @@ function App() {
           flex: 1,
           padding: '6rem 0 0 0',
           position: 'relative',
-          zIndex: 1
+          zIndex: 100
         }}>
           <FadeInOnScroll direction="up" delay={100}>
             <div style={{
@@ -461,7 +460,9 @@ function App() {
               display: 'flex',
               gap: '1.5rem',
               flexWrap: 'wrap',
-              justifyContent: 'center'
+              justifyContent: 'center',
+              position: 'relative',
+              zIndex: 10
             }}>
               <button
                 onClick={() => window.location.href = 'https://svuit.org/mmtt/docs/contribute'}
@@ -523,7 +524,9 @@ function App() {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: '0 2rem'
+            padding: '0 2rem',
+            position: 'relative',
+            zIndex: 50
           }}>
             <br />
             <br />
@@ -550,22 +553,10 @@ function App() {
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               textAlign: 'center',
-              position: 'relative',
-              paddingBottom: '1rem',
-              width: '100%'
+              width: '100%',
+              paddingBottom: '0.5rem'
             }}>
               Introduction
-              <div style={{
-                content: '""',
-                position: 'absolute',
-                bottom: '0',
-                left: '50%',
-                transform: 'translateX(-50%)',
-                width: '100px',
-                height: '4px',
-                background: 'linear-gradient(90deg, #b388ff, #7c4dff)',
-                borderRadius: '2px'
-              }} />
             </h2>
             <InfoCards />
           </div>
@@ -1013,8 +1004,8 @@ function App() {
                     style={{
                       color: hoveredLink === 'docs-footer' ? '#b388ff' : '#fff',
                       textDecoration: 'none',
-                      padding: '0.5rem 1.2rem',
-                      fontSize: '1rem',
+                      padding: '0.7rem 1.4rem',
+                      fontSize: '0.9rem',
                       fontWeight: '500',
                       borderRadius: '8px',
                       transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
@@ -1035,8 +1026,8 @@ function App() {
                     style={{
                       color: hoveredLink === 'contribute-footer' ? '#b388ff' : '#fff',
                       textDecoration: 'none',
-                      padding: '0.5rem 1.2rem',
-                      fontSize: '1rem',
+                      padding: '0.7rem 1.4rem',
+                      fontSize: '0.9rem',
                       fontWeight: '500',
                       borderRadius: '8px',
                       transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
@@ -1057,8 +1048,8 @@ function App() {
                     style={{
                       color: hoveredLink === 'notify-footer' ? '#b388ff' : '#fff',
                       textDecoration: 'none',
-                      padding: '0.5rem 1.2rem',
-                      fontSize: '1rem',
+                      padding: '0.7rem 1.4rem',
+                      fontSize: '0.9rem',
                       fontWeight: '500',
                       borderRadius: '8px',
                       transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
@@ -1073,18 +1064,10 @@ function App() {
                     Thông báo
                   </a>
                 </div>
-                <p style={{
-                  color: '#fff',
-                  fontSize: '1.2rem',
-                  fontFamily: 'Quicksand, sans-serif',
-                  marginBottom: '1rem'
-                }}>
-                  Stay in touch
-                </p>
                 <div style={{
                   display: 'flex',
                   justifyContent: 'center',
-                  gap: '1.2rem',
+                  gap: '0.8rem',
                 marginBottom: '1.5rem'
                 }}>
                   <a 
@@ -1095,7 +1078,14 @@ function App() {
                     style={{
                       color: hoveredLink === 'facebook' ? '#4267B2' : '#fff',
                       fontSize: '1.5rem',
-                      transition: 'color 0.3s ease'
+                      transition: 'all 0.3s ease',
+                      padding: '0.5rem 1rem',
+                      borderRadius: '50%',
+                      backgroundColor: 'transparent',
+                      aspectRatio: '1/1',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
                     }}
                   >
                     <i className="fab fa-facebook"></i>
@@ -1108,7 +1098,14 @@ function App() {
                     style={{
                       color: hoveredLink === 'youtube' ? '#FF0000' : '#fff',
                       fontSize: '1.5rem',
-                      transition: 'color 0.3s ease'
+                      transition: 'all 0.3s ease',
+                      padding: '0.5rem 1rem',
+                      borderRadius: '50%',
+                      backgroundColor: 'transparent',
+                      aspectRatio: '1/1',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
                     }}
                   >
                     <i className="fab fa-youtube"></i>
@@ -1120,7 +1117,14 @@ function App() {
                     style={{
                       color: hoveredLink === 'email' ? '#D44638' : '#fff',
                       fontSize: '1.5rem',
-                      transition: 'color 0.3s ease'
+                      transition: 'all 0.3s ease',
+                      padding: '0.5rem 1rem',
+                      borderRadius: '50%',
+                      backgroundColor: 'transparent',
+                      aspectRatio: '1/1',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
                     }}
                   >
                     <i className="far fa-envelope" aria-label="Envelope"></i>
@@ -1133,8 +1137,15 @@ function App() {
                     style={{
                       color: hoveredLink === 'github' ? '#333' : '#fff',
                       fontSize: '1.5rem',
-                      transition: 'color 0.3s ease',
-                      textDecoration: 'none'
+                      transition: 'all 0.3s ease',
+                      textDecoration: 'none',
+                      padding: '0.5rem 1rem',
+                      borderRadius: '50%',
+                      backgroundColor: 'transparent',
+                      aspectRatio: '1/1',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
                     }}
                   >
                     <i className="fab fa-github"></i>
@@ -1148,7 +1159,7 @@ function App() {
                   style={{
                     color: hoveredLink === 'bug-report' ? '#b388ff' : '#fff',
                     fontFamily: 'Quicksand, sans-serif',
-                    fontSize: '1.25rem',
+                    fontSize: '1rem',
                     textDecoration: 'none',
                     transition: 'color 0.3s ease',
                     position: 'relative',
