@@ -30,7 +30,7 @@ Welcome to Study Vault, a modern web application built with React that serves as
 
 2. Install dependencies:
    ```bash
-   npm install --legacy-peer-deps
+   npm install
    ```
 
 3. Start the development server:
