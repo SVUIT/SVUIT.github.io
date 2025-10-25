@@ -1,13 +1,11 @@
-import React, { useRef, useEffect, useState, Suspense, lazy } from 'react';
+import React, { useRef, useEffect, useState, lazy } from 'react';
 import './App.css';
-import { reportWebVitals } from './utils/serviceWorker';
 import { performanceConfig } from './config/performance';
 
 // Lazy load heavy components
 const GooeyNav = lazy(() => import('./components/GooeyNav/GooeyNav'));
 const InfoCards = lazy(() => import('./components/InfoCards/InfoCards'));
 const FadeInOnScroll = lazy(() => import('./components/FadeInOnScroll/FadeInOnScroll'));
-const OptimizedImage = lazy(() => import('./components/OptimizedImage/OptimizedImage'));
 
 // Custom Cursor Component
 const CustomCursor = () => {
@@ -161,8 +159,12 @@ const BackgroundDecorations = () => {
   );
 };
 
-// Add resource hints for performance
-const ResourceHints = () => {
+function App() {
+  const [isVisible, setIsVisible] = useState(false);
+  const [hoveredButton, setHoveredButton] = useState(null);
+  const [hoveredLink, setHoveredLink] = useState(null);
+
+  // Resource hints for performance
   useEffect(() => {
     // Add preconnect for external domains
     performanceConfig.resourceHints.forEach(hint => {
@@ -181,28 +183,6 @@ const ResourceHints = () => {
       });
     };
   }, []);
-
-  return null;
-};
-
-// Loading component for Suspense fallback
-const LoadingFallback = () => (
-  <div style={{
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100vh',
-    width: '100%',
-    backgroundColor: '#0f1a26'
-  }}>
-    <div className="loader"></div>
-  </div>
-);
-
-function App() {
-  const [isVisible, setIsVisible] = useState(false);
-  const [hoveredButton, setHoveredButton] = useState(null);
-  const [hoveredLink, setHoveredLink] = useState(null);
   
   const items = [
     { label: "Kho tài liệu", href: "https://svuit.org/mmtt" },
@@ -356,7 +336,6 @@ function App() {
             onMouseLeave={() => setHoveredButton(null)}
             style={{
               background: 'none',
-              border: 'none',
               cursor: 'pointer',
               padding: '0.5rem',
               borderRadius: '50%',
@@ -621,7 +600,7 @@ function App() {
                 }}>
                   <img 
                     src={`${process.env.PUBLIC_URL}/${item}${item % 2 === 0 ? '.jpg' : '.png'}`} 
-                    alt={`Picture ${item}`} 
+                    alt={`Team member ${item}`}
                     style={{
                       width: '100%',
                       height: 'auto',
