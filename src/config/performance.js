@@ -3,17 +3,22 @@
  */
 
 export const performanceConfig = {
-  // Feature flags
+  // Feature flags and monitoring configuration
   features: {
     serviceWorker: process.env.NODE_ENV === 'production',
     imageOptimization: true,
-    codeSplitting: true
+    codeSplitting: true,
+    webp: true,
+    avif: false, // Enable when browser support is better
+    preload: true,
+    prefetch: true
   },
   
-  // Monitoring configuration
   monitoring: {
     webVitals: true,
-    analytics: false
+    analytics: false,
+    errorTracking: true,
+    metrics: true
   },
   
   // Image optimization settings
@@ -51,24 +56,6 @@ export const performanceConfig = {
     staticCacheControl: 'public, max-age=31536000, immutable',
   },
   
-  // Feature flags for progressive enhancement
-  features: {
-    webp: true,
-    avif: false, // Enable when browser support is better
-    serviceWorker: true,
-    preload: true,
-    prefetch: true,
-  },
-  
-  // Performance monitoring
-  monitoring: {
-    // Enable Web Vitals collection
-    webVitals: true,
-    // Enable error tracking
-    errorTracking: true,
-    // Enable performance metrics collection
-    metrics: true,
-  },
 };
 
 /**
