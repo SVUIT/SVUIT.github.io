@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState, lazy } from 'react';
 import './App.css';
+import membersData from './data/members.json';
 import { performanceConfig } from './config/performance';
 
 // Lazy load heavy components
@@ -38,7 +39,7 @@ const CustomCursor = () => {
     // Add event listeners
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('mousedown', handleMouseDown);
-    
+
     // Add hover effects for interactive elements
     const interactiveElements = document.querySelectorAll('a, button, [role="button"], [tabindex]');
     interactiveElements.forEach(el => {
@@ -58,7 +59,7 @@ const CustomCursor = () => {
   }, []);
 
   return (
-    <div 
+    <div
       ref={cursorDot}
       className={`cursor-dot ${isActive ? 'active' : ''}`}
       style={{
@@ -101,7 +102,7 @@ const BackgroundDecorations = () => {
           pointerEvents: 'none'
         }} />
       ))}
-      
+
       <div style={{
         position: 'fixed',
         top: 0,
@@ -118,7 +119,7 @@ const BackgroundDecorations = () => {
         pointerEvents: 'none',
         transform: 'perspective(500px) rotateX(20deg) translateZ(0)'
       }} />
-      
+
       {[...Array(50)].map((_, i) => {
         const size = Math.random() * 6 + 2;
         const posX = Math.random() * 100;
@@ -126,7 +127,7 @@ const BackgroundDecorations = () => {
         const delay = Math.random() * 5;
         const duration = Math.random() * 10 + 10;
         const opacity = Math.random() * 0.3 + 0.1;
-        
+
         return (
           <div key={`particle-${i}`} style={{
             position: 'fixed',
@@ -143,7 +144,7 @@ const BackgroundDecorations = () => {
           }} />
         );
       })}
-      
+
       <div style={{
         position: 'fixed',
         top: 0,
@@ -183,7 +184,7 @@ function App() {
       });
     };
   }, []);
-  
+
   const items = [
     { label: "Kho tài liệu", href: "https://svuit.org/mmtt" },
     { label: "Đóng góp", href: "https://svuit.org/mmtt/docs/contribute" },
@@ -210,12 +211,12 @@ function App() {
       });
     }
 
-    
+
     // Set initial visibility with a small delay
     const timer = setTimeout(() => {
       setIsVisible(true);
     }, 100);
-    
+
     // Cleanup function
     return () => {
       clearTimeout(timer);
@@ -262,7 +263,7 @@ function App() {
         }
       }
     `;
-    
+
     const cursorStyles = document.createElement('style');
     cursorStyles.innerHTML = `
       /* Hide all default cursors */
@@ -289,7 +290,7 @@ function App() {
     `;
     document.head.appendChild(cursorStyles);
     document.head.appendChild(styleElement);
-    
+
     return () => {
       document.head.removeChild(cursorStyles);
       document.head.removeChild(styleElement);
@@ -297,7 +298,7 @@ function App() {
   }, []);
 
   return (
-    <div className="app-cursor" style={{ 
+    <div className="app-cursor" style={{
       minHeight: '100vh',
       display: 'flex',
       flexDirection: 'column',
@@ -311,7 +312,7 @@ function App() {
     }}>
       <CustomCursor />
       <BackgroundDecorations />
-      <div style={{ 
+      <div style={{
         flex: '0 1 auto',
         padding: '0.5rem 2rem 0',
         position: 'relative',
@@ -330,7 +331,7 @@ function App() {
           alignItems: 'center',
           gap: '1rem'
         }}>
-          <button 
+          <button
             onClick={() => window.location.href = '/'}
             onMouseEnter={() => setHoveredButton('home')}
             onMouseLeave={() => setHoveredButton(null)}
@@ -352,29 +353,29 @@ function App() {
               transform: hoveredButton === 'home' ? 'scale(1.1) rotate(5deg)' : 'scale(1) rotate(0)'
             }}
           >
-            <img 
-              src="/favicon.ico" 
-              alt="Home" 
-              style={{ 
-                width: '50px', 
+            <img
+              src="/favicon.ico"
+              alt="Home"
+              style={{
+                width: '50px',
                 height: '50px',
                 objectFit: 'contain',
                 filter: 'drop-shadow(0 0 5px rgba(100, 243, 255, 0.5))',
                 transition: 'all 0.3s ease',
                 marginTop: '0.2rem'
-              }} 
+              }}
             />
           </button>
         </div>
 
-        <div style={{ 
+        <div style={{
           width: 'auto',
           position: 'absolute',
           top: '-1rem',
           right: '1rem',
           zIndex: 10
         }}>
-          <GooeyNav 
+          <GooeyNav
             initialActiveIndex={-1}
             items={items}
             particleCount={12}
@@ -385,7 +386,7 @@ function App() {
             colors={[1, 2, 3, 1, 2, 3, 1, 4]}
           />
         </div>
-        
+
         <br />
         <br />
         <br />
@@ -432,9 +433,9 @@ function App() {
               </h1>
             </div>
           </FadeInOnScroll>
-          
+
           <FadeInOnScroll direction="up" delay={200}>
-            <div style={{ 
+            <div style={{
               marginTop: '2rem',
               display: 'flex',
               gap: '1.5rem',
@@ -466,7 +467,7 @@ function App() {
               >
                 <span style={{ position: 'relative', zIndex: 2 }}>Đóng góp</span>
               </button>
-              
+
               <button
                 onClick={() => window.location.href = 'https://svuit.org/mmtt'}
                 onMouseEnter={() => setHoveredButton('docs')}
@@ -493,7 +494,7 @@ function App() {
             </div>
           </FadeInOnScroll>
         </div>
-        
+
         <FadeInOnScroll direction="up" delay={300}>
           <div style={{
             maxWidth: '1200px',
@@ -598,8 +599,8 @@ function App() {
                   border: `3px solid ${item % 2 === 0 ? '#b388ff' : '#7c4dff'}`,
                   transition: 'transform 0.3s ease, box-shadow 0.3s ease'
                 }}>
-                  <img 
-                    src={`${process.env.PUBLIC_URL}/${item}${item % 2 === 0 ? '.jpg' : '.png'}`} 
+                  <img
+                    src={`${process.env.PUBLIC_URL}/${item}${item % 2 === 0 ? '.jpg' : '.png'}`}
                     alt={`Team member ${item}`}
                     style={{
                       width: '100%',
@@ -645,293 +646,49 @@ function App() {
               </span>
             </div>
 
-            <div style={{ marginBottom: '4rem' }}>
-              <h2 style={{
-                textAlign: 'center',
-                color: '#fff',
-                marginBottom: '2rem',
-                fontSize: '2rem',
-                fontWeight: '600'
-              }}>Operations Lead</h2>
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-                gap: '2rem',
-                justifyContent: 'center'
-              }}>
-                <div style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  margin: '1rem'
+            {Object.entries(membersData).map(([role, members]) => (
+              <div key={role} style={{ marginBottom: '4rem' }}>
+                <h2 style={{
+                  textAlign: 'center',
+                  color: '#fff',
+                  marginBottom: '2rem',
+                  fontSize: '2rem',
+                  fontWeight: '600'
                 }}>
-                  <img 
-                    src={`${process.env.PUBLIC_URL}/ThuanTong.webp`} 
-                    alt="Tống Võ Anh Thuận" 
-                    style={{
-                      width: '200px',
-                      height: '200px',
-                      borderRadius: '50%',
-                      objectFit: 'cover',
-                      border: '3px solid #7c4dff',
-                      marginBottom: '1rem'
-                    }}
-                    loading="lazy"
-                  />
-                  <p style={{ color: '#fff', fontSize: '1.1rem', margin: '0.5rem 0' }}>Tống Võ Anh Thuận</p>
+                  {role}
+                </h2>
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+                  gap: '2rem',
+                  justifyContent: 'center'
+                }}>
+                  {members.map((member, index) => (
+                    <div key={member.name} style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      margin: '1rem'
+                    }}>
+                      <img
+                        src={`${process.env.PUBLIC_URL}/${member.img}`}
+                        alt={member.name}
+                        style={{
+                          width: '200px',
+                          height: '200px',
+                          borderRadius: '50%',
+                          objectFit: 'cover',
+                          border: `3px solid ${index % 2 === 0 ? '#7c4dff' : '#b388ff'}`,
+                          marginBottom: '1rem'
+                        }}
+                        loading="lazy"
+                      />
+                      <p style={{ color: '#fff', fontSize: '1.1rem', margin: '0.5rem 0' }}>{member.name}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
-            </div>
-
-            <div style={{ marginBottom: '4rem' }}>
-              <h2 style={{
-                textAlign: 'center',
-                color: '#fff',
-                marginBottom: '2rem',
-                fontSize: '2rem',
-                fontWeight: '600'
-              }}>Technical Lead</h2>
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-                gap: '2rem',
-                justifyContent: 'center'
-              }}>
-                <div style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  margin: '1rem'
-                }}>
-                  <img 
-                    src={`${process.env.PUBLIC_URL}/default.png`} 
-                    alt="Lê Huỳnh Quang Vũ" 
-                    style={{
-                      width: '200px',
-                      height: '200px',
-                      borderRadius: '50%',
-                      objectFit: 'cover',
-                      border: '3px solid #b388ff',
-                      marginBottom: '1rem'
-                    }}
-                    loading="lazy"
-                  />
-                  <p style={{ color: '#fff', fontSize: '1.1rem', margin: '0.5rem 0' }}>Lê Huỳnh Quang Vũ</p>
-                </div>
-              </div>
-            </div>
-
-            <div style={{ marginBottom: '4rem' }}>
-              <h2 style={{
-                textAlign: 'center',
-                color: '#fff',
-                marginBottom: '2rem',
-                fontSize: '2rem',
-                fontWeight: '600'
-              }}>Resource Manager</h2>
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-                gap: '2rem',
-                justifyContent: 'center'
-              }}>
-                {[
-                  { name: 'Phạm Việt Hoàng', img: 'DSC_00033.webp' },
-                  { name: 'Sơn Nguyễn Kì Duyên', img: 'KyDuyen.jpg' },
-                  { name: 'Trần Công Hải', img: 'TranCongHai.jpg' },
-                  { name: 'Nguyễn Hoàng Lộc', img: 'NguyenHoangLoc.JPG' }
-                ].map((member, index) => (
-                  <div key={index} style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    margin: '1rem'
-                  }}>
-                    <img 
-                      src={`${process.env.PUBLIC_URL}/${member.img}`} 
-                      alt={member.name} 
-                      style={{
-                        width: '200px',
-                        height: '200px',
-                        borderRadius: '50%',
-                        objectFit: 'cover',
-                        border: `3px solid ${index % 2 === 0 ? '#7c4dff' : '#b388ff'}`,
-                        marginBottom: '1rem'
-                      }}
-                      loading="lazy"
-                    />
-                    <p style={{ color: '#fff', fontSize: '1.1rem', margin: '0.5rem 0' }}>{member.name}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div style={{ marginBottom: '4rem' }}>
-              <h2 style={{
-                textAlign: 'center',
-                color: '#fff',
-                marginBottom: '2rem',
-                fontSize: '2rem',
-                fontWeight: '600'
-              }}>Back-end Developer</h2>
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-                gap: '2rem',
-                justifyContent: 'center'
-                }}>
-                {[
-                  { name: 'Đoàn Nguyễn Lâm', img: 'DoanNguyenLam.jpg' },
-                  { name: 'Đặng Chí Thành', img: 'DangChiThanh.jpg' }
-                ].map((member, index) => (
-                  <div key={index} style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    margin: '1rem'
-                  }}>
-                    <img 
-                      src={`${process.env.PUBLIC_URL}/${member.img}`} 
-                      alt={member.name} 
-                      style={{
-                        width: '200px',
-                        height: '200px',
-                        borderRadius: '50%',
-                        objectFit: 'cover',
-                        border: `3px solid ${index % 2 === 0 ? '#7c4dff' : '#b388ff'}`,
-                        marginBottom: '1rem'
-                      }}
-                      loading="lazy"
-                    />
-                    <p style={{ color: '#fff', fontSize: '1.1rem', margin: '0.5rem 0' }}>{member.name}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div style={{ marginBottom: '4rem' }}>
-              <h2 style={{
-                textAlign: 'center',
-                color: '#fff',
-                marginBottom: '2rem',
-                fontSize: '2rem',
-                fontWeight: '600'
-              }}>Social Media Manager</h2>
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-                gap: '2rem',
-                justifyContent: 'center'
-              }}>
-                <div style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  margin: '1rem'
-                }}>
-                  <img 
-                    src={`${process.env.PUBLIC_URL}/DoanQuocAn.jpg`} 
-                    alt="Đoàn Quốc An" 
-                    style={{
-                      width: '200px',
-                      height: '200px',
-                      borderRadius: '50%',
-                      objectFit: 'cover',
-                      border: '3px solid #7c4dff',
-                      marginBottom: '1rem'
-                    }}
-                    loading="lazy"
-                  />
-                  <p style={{ color: '#fff', fontSize: '1.1rem', margin: '0.5rem 0' }}>Đoàn Quốc An</p>
-                </div>
-              </div>
-            </div>
-
-            <div style={{ marginBottom: '4rem' }}>
-              <h2 style={{
-                textAlign: 'center',
-                color: '#fff',
-                marginBottom: '2rem',
-                fontSize: '2rem',
-                fontWeight: '600'
-              }}>Content Designer</h2>
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-                gap: '2rem',
-                justifyContent: 'center'
-              }}>
-                {[
-                  { name: 'Phạm Gia Tuệ', img: 'PhamGiaTue.jpg' },
-                  { name: 'Nguyễn Thành An', img: 'ann.png' }
-                ].map((member, index) => (
-                  <div key={index} style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    margin: '1rem'
-                  }}>
-                    <img 
-                      src={`${process.env.PUBLIC_URL}/${member.img}`} 
-                      alt={member.name} 
-                      style={{
-                        width: '200px',
-                        height: '200px',
-                        borderRadius: '50%',
-                        objectFit: 'cover',
-                        border: `3px solid ${index % 2 === 0 ? '#7c4dff' : '#b388ff'}`,
-                        marginBottom: '1rem'
-                      }}
-                      loading="lazy"
-                    />
-                    <p style={{ color: '#fff', fontSize: '1.1rem', margin: '0.5rem 0' }}>{member.name}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div style={{ marginBottom: '4rem' }}>
-              <h2 style={{
-                textAlign: 'center',
-                color: '#fff',
-                marginBottom: '2rem',
-                fontSize: '2rem',
-                fontWeight: '600'
-              }}>Front-end Developer</h2>
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-                gap: '2rem',
-                justifyContent: 'center'
-              }}>
-                {[
-                  { name: 'Trương Đỗ Như Quỳnh', img: 'TruongDoNhuQuynh.jpg' },
-                  { name: 'Nguyễn Thế Lập', img: 'default.png' }
-                ].map((member, index) => (
-                  <div key={index} style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    margin: '1rem'
-                  }}>
-                    <img 
-                      src={`${process.env.PUBLIC_URL}/${member.img}`} 
-                      alt={member.name} 
-                      style={{
-                        width: '200px',
-                        height: '200px',
-                        borderRadius: '50%',
-                        objectFit: 'cover',
-                        border: `3px solid ${index % 2 === 0 ? '#7c4dff' : '#b388ff'}`,
-                        marginBottom: '1rem'
-                      }}
-                      loading="lazy"
-                    />
-                    <p style={{ color: '#fff', fontSize: '1.1rem', margin: '0.5rem 0' }}>{member.name}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
+            ))}
             <div style={{
               width: '100%',
               position: 'relative',
@@ -939,7 +696,7 @@ function App() {
               marginTop: 'auto',
               overflow: 'hidden'
             }}>
-             <footer style={{
+              <footer style={{
                 backgroundColor: 'rgba(15, 26, 38, 0.98)',
                 padding: '1.5rem 1rem',
                 width: '100%',
@@ -949,10 +706,10 @@ function App() {
                 boxShadow: '0 -2px 15px rgba(0,0,0,0.2)',
                 backdropFilter: 'blur(10px)',
                 borderTop: '1px solid rgba(255, 255, 255, 0.08)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'center'
-                }}>
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center'
+              }}>
                 <div style={{
                   fontSize: '2.2rem',
                   fontWeight: '800',
@@ -966,7 +723,7 @@ function App() {
                 }}>
                   STUDY VAULT OF UIT
                 </div>
-                
+
                 <div style={{
                   display: 'flex',
                   justifyContent: 'center',
@@ -976,8 +733,8 @@ function App() {
                   flexDirection: 'row',
                   alignItems: 'center'
                 }}>
-                  <a 
-                    href="https://svuit.org/mmtt" 
+                  <a
+                    href="https://svuit.org/mmtt"
                     onMouseEnter={() => setHoveredLink('docs-footer')}
                     onMouseLeave={() => setHoveredLink(null)}
                     style={{
@@ -998,8 +755,8 @@ function App() {
                   >
                     Kho tài liệu
                   </a>
-                  <a 
-                    href="https://svuit.org/mmtt/docs/contribute" 
+                  <a
+                    href="https://svuit.org/mmtt/docs/contribute"
                     onMouseEnter={() => setHoveredLink('contribute-footer')}
                     onMouseLeave={() => setHoveredLink(null)}
                     style={{
@@ -1020,8 +777,8 @@ function App() {
                   >
                     Đóng góp
                   </a>
-                  <a 
-                    href="https://svuit.org/mmtt/docs/ThongBao/index" 
+                  <a
+                    href="https://svuit.org/mmtt/docs/ThongBao/index"
                     onMouseEnter={() => setHoveredLink('notify-footer')}
                     onMouseLeave={() => setHoveredLink(null)}
                     style={{
@@ -1047,10 +804,10 @@ function App() {
                   display: 'flex',
                   justifyContent: 'center',
                   gap: '0.8rem',
-                marginBottom: '1.5rem'
+                  marginBottom: '1.5rem'
                 }}>
-                  <a 
-                    href="https://www.facebook.com/studyvault.uit" 
+                  <a
+                    href="https://www.facebook.com/studyvault.uit"
                     aria-label="Facebook"
                     onMouseEnter={() => setHoveredLink('facebook')}
                     onMouseLeave={() => setHoveredLink(null)}
@@ -1069,8 +826,8 @@ function App() {
                   >
                     <i className="fab fa-facebook"></i>
                   </a>
-                  <a 
-                    href="https://www.youtube.com/@svuit-mmtt" 
+                  <a
+                    href="https://www.youtube.com/@svuit-mmtt"
                     aria-label="Youtube"
                     onMouseEnter={() => setHoveredLink('youtube')}
                     onMouseLeave={() => setHoveredLink(null)}
@@ -1089,7 +846,7 @@ function App() {
                   >
                     <i className="fab fa-youtube"></i>
                   </a>
-                  <a 
+                  <a
                     href="https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcRzBxqGdPrTcSJNrgxQpdJtpxNvxqtgzHNxXZcgvLCCBLZFbBrtXhnRQCKzvCXWdKWZFDfTq"
                     onMouseEnter={() => setHoveredLink('email')}
                     onMouseLeave={() => setHoveredLink(null)}
@@ -1108,8 +865,8 @@ function App() {
                   >
                     <i className="far fa-envelope" aria-label="Envelope"></i>
                   </a>
-                  <a 
-                    href="https://github.com/SVUIT/mmtt/releases" 
+                  <a
+                    href="https://github.com/SVUIT/mmtt/releases"
                     aria-label="Github"
                     onMouseEnter={() => setHoveredLink('github')}
                     onMouseLeave={() => setHoveredLink(null)}
@@ -1130,8 +887,8 @@ function App() {
                     <i className="fab fa-github"></i>
                   </a>
                 </div>
-                
-                <a 
+
+                <a
                   href="https://github.com/SVUIT/mmtt/issues/new/choose"
                   onMouseEnter={() => setHoveredLink('bug-report')}
                   onMouseLeave={() => setHoveredLink(null)}
@@ -1157,7 +914,7 @@ function App() {
                   background: 'radial-gradient(circle at 20% 30%, rgba(179, 136, 255, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(124, 77, 255, 0.1) 0%, transparent 50%)',
                   zIndex: -1
                 }} />
-                
+
                 <div style={{
                   position: 'absolute',
                   top: '0',
@@ -1168,7 +925,7 @@ function App() {
                   background: 'linear-gradient(90deg, transparent, rgba(0, 255, 199, 0.5), transparent)',
                   zIndex: 1
                 }} />
-                
+
                 <div style={{
                   display: 'flex',
                   alignItems: 'center',
