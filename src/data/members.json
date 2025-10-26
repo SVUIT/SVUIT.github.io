@@ -1,0 +1,24 @@
+{
+  "Operations Lead": [
+    { "name": "Tống Võ Anh Thuận", "img": "ThuanTong.webp" }
+  ],
+  "Senior Advisors": [
+    { "name": "Lê Huỳnh Quang Vũ", "img": "default.png" },
+    { "name": "Trần Công Hải", "img": "TranCongHai.jpg" }
+  ],
+  "Platform Operations Team": [
+    { "name": "Nguyễn Hoàng Lộc", "img": "NguyenHoangLoc.JPG" },
+    { "name": "Đoàn Nguyễn Lâm", "img": "DoanNguyenLam.jpg" },
+    { "name": "Đặng Chí Thành", "img": "DangChiThanh.jpg" },
+    { "name": "Phạm Việt Hoàng", "img": "DSC_00033.webp" },
+    { "name": "Sơn Nguyễn Kì Duyên", "img": "KyDuyen.jpg" }
+  ],
+  "Social Media Team": [
+    { "name": "Đoàn Quốc An", "img": "DoanQuocAn.jpg" },
+    { "name": "Nguyễn Thành An", "img": "ann.png" }
+  ],
+  "Website Development Team": [
+    { "name": "Trương Đỗ Như Quỳnh", "img": "TruongDoNhuQuynh.jpg" },
+    { "name": "Nguyễn Thế Lập", "img": "default.png" }
+  ]
+}
