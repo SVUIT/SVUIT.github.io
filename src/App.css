@@ -323,22 +323,69 @@ a:hover {
 }
 
 /* Responsive */
+
 @media (max-width: 1024px) {
   html { font-size: 15px; }
+
   h1 { font-size: 3rem; }
   h2 { font-size: 2.25rem; }
   h3 { font-size: 1.75rem; }
+
+  /* Prevent team member circle from exceeding width */
+  .member-card,
+  .team-member {
+    width: 100% !important;
+  }
+
+  .member-image {
+    max-width: 160px;
+    height: auto;
+  }
 }
 
 @media (max-width: 768px) {
   html { font-size: 14px; }
+
   .section { padding: 4rem 0; }
   .section-title { font-size: 2rem; }
+
+  /* Stack items vertically */
+  .team-row {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 2rem;
+  }
+
+  .member-image {
+    max-width: 150px;
+    height: auto;
+  }
 }
 
 @media (max-width: 480px) {
   h1 { font-size: 2.25rem; }
   h2 { font-size: 1.75rem; }
   h3 { font-size: 1.5rem; }
+
   .btn { padding: 0.6rem 1.25rem; }
+
+  /* Center everything cleanly on mobile */
+  .team-row {
+    flex-direction: column !important;
+    gap: 1.5rem;
+  }
+
+  .member-image {
+    max-width: 130px;
+    height: auto;
+  }
+
+  /* Prevent image circles from pushing layout */
+  .member-card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+  }
 }

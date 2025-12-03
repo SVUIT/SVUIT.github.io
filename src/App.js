@@ -664,12 +664,13 @@ function App() {
                   style={{
                     display: 'flex',
                     flexDirection: 'row',
-                    flexWrap: 'nowrap',       // stay on ONE LINE
-                    justifyContent: 'center', // center the images
+                    flexWrap: 'wrap',        // ← fix slider
+                    justifyContent: 'center',
                     alignItems: 'center',
                     gap: '2rem',
-                    overflowX: 'auto',        // allows scrolling if needed
+                    overflow: 'hidden',      // ← remove horizontal scroll
                     paddingBottom: '1rem',
+                    width: '100%',
                   }}
                 >
                   {members.map((member, index) => (
@@ -679,7 +680,6 @@ function App() {
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
-                        minWidth: "230px", 
                       }}
                     >
                       <div
