@@ -565,7 +565,7 @@ function App() {
               fontFamily: 'Fjalla One, sans-serif',
               fontWeight: 'bold'
             }}>
-              About
+            About
             </h2>
             <span style={{
               color: '#fff',
@@ -574,7 +574,7 @@ function App() {
               fontWeight: 'bold',
               marginLeft: '1rem'
             }}>
-              our team
+            our team
             </span>
           </div>
 
@@ -604,7 +604,7 @@ function App() {
                     alt={`Team member ${item}`}
                     style={{
                       width: '100%',
-                      height: 'auto',
+                      height: '150px',
                       display: 'block',
                       transition: 'transform 0.5s ease'
                     }}
@@ -679,7 +679,7 @@ function App() {
                           borderRadius: '50%',
                           objectFit: 'cover',
                           border: `3px solid ${index % 2 === 0 ? '#7c4dff' : '#b388ff'}`,
-                          marginBottom: '1rem'
+                          marginBottom: '0.5rem'
                         }}
                         loading="lazy"
                       />
