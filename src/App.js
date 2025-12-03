@@ -648,42 +648,71 @@ function App() {
 
             {Object.entries(membersData).map(([role, members]) => (
               <div key={role} style={{ marginBottom: '4rem' }}>
-                <h2 style={{
-                  textAlign: 'center',
-                  color: '#fff',
-                  marginBottom: '2rem',
-                  fontSize: '2rem',
-                  fontWeight: '600'
-                }}>
+                <h2
+                  style={{
+                    textAlign: 'center',
+                    color: '#fff',
+                    marginBottom: '2rem',
+                    fontSize: '2rem',
+                    fontWeight: '600',
+                  }}
+                >
                   {role}
                 </h2>
-                <div style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-                  gap: '2rem',
-                  justifyContent: 'center'
-                }}>
+                
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    flexWrap: 'nowrap',       // stay on ONE LINE
+                    justifyContent: 'center', // center the images
+                    alignItems: 'center',
+                    gap: '2rem',
+                    overflowX: 'auto',        // allows scrolling if needed
+                    paddingBottom: '1rem',
+                  }}
+                >
                   {members.map((member, index) => (
-                    <div key={member.name} style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                      margin: '1rem'
-                    }}>
-                      <img
-                        src={`${process.env.PUBLIC_URL}/${member.img}`}
-                        alt={member.name}
+                    <div
+                      key={member.name}
+                      style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                      }}
+                    >
+                      <div
                         style={{
                           width: '200px',
                           height: '200px',
                           borderRadius: '50%',
-                          objectFit: 'cover',
+                          overflow: 'hidden',
                           border: `3px solid ${index % 2 === 0 ? '#7c4dff' : '#b388ff'}`,
-                          marginBottom: '0.5rem'
+                          marginBottom: '0.5rem',
                         }}
-                        loading="lazy"
-                      />
-                      <p style={{ color: '#fff', fontSize: '1.1rem', margin: '0.5rem 0' }}>{member.name}</p>
+                      >
+                        <img
+                          src={`${process.env.PUBLIC_URL}/${member.img}`}
+                          alt={member.name}
+                          loading="lazy"
+                          style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover',
+                          }}
+                        />
+                      </div>
+                        
+                      <p
+                        style={{
+                          color: '#fff',
+                          fontSize: '1.1rem',
+                          margin: '0.5rem 0',
+                          textAlign: 'center',
+                        }}
+                      >
+                        {member.name}
+                      </p>
                     </div>
                   ))}
                 </div>
