@@ -1,7 +1,5 @@
 {
-  "Operations Lead": [
-    { "name": "Tống Võ Anh Thuận", "img": "ThuanTong.webp" }
-  ],
+  "Operations Lead": [{ "name": "Tống Võ Anh Thuận", "img": "ThuanTong.webp" }],
   "Senior Advisors": [
     { "name": "Lê Huỳnh Quang Vũ", "img": "default.png" },
     { "name": "Trần Công Hải", "img": "TranCongHai.jpg" }
