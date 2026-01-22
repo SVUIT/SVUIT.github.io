@@ -4,7 +4,7 @@ from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
 # --- Set up ---
-NOTION_TOKEN = os.environ.get("NOTION_TOKEN") 
+NOTION_TOKEN = os.environ.get("NOTION_TOKEN")
 DATABASE_ID  = os.environ.get("DATABASE_ID")
 IMAGE_FOLDER = "public/member_images"
 HEADERS = {
