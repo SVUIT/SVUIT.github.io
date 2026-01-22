@@ -1,7 +1,32 @@
-import React, { useRef, useEffect, useState, lazy, useMemo } from "react";
+import React, { useRef, useEffect, useState, lazy } from "react";
 import "./App.css";
 import membersData from "./data/notion_member.json";
 import { performanceConfig } from "./config/performance";
+
+const ROLE_ORDER = [
+  "Operations Lead",
+  "Senior Advisor",
+  "Platform Operations",
+  "Social Media",
+  "Website Development",
+];
+
+const groupedData = (() => {
+  const groups = membersData.reduce((acc, item) => {
+    const role = item.role || "Khác";
+    if (!acc[role]) acc[role] = [];
+    acc[role].push(item);
+    return acc;
+  }, {});
+
+  const sortedGroups = {};
+  ROLE_ORDER.forEach((role) => {
+    if (groups[role]) {
+      sortedGroups[role] = groups[role];
+    }
+  });
+  return sortedGroups;
+})();
 
 // Lazy load heavy components
 const GooeyNav = lazy(() => import("./components/GooeyNav/GooeyNav"));
@@ -310,33 +335,6 @@ function App() {
       document.head.removeChild(styleElement);
     };
   }, []);
-
-  // member role data
-  const ROLE_ORDER = [
-    "Operations Lead",
-    "Senior Advisor",
-    "Platform Operations",
-    "Social Media",
-    "Website Development",
-  ];
-
-  const groupedData = useMemo(() => {
-    const groups = membersData.reduce((acc, item) => {
-      const role = item.role || "Khác";
-      if (!acc[role]) acc[role] = [];
-      acc[role].push(item);
-      return acc;
-    }, {});
-
-    const sortedGroups = {};
-    ROLE_ORDER.forEach((role) => {
-      if (groups[role]) {
-        sortedGroups[role] = groups[role];
-      }
-    });
-
-    return sortedGroups;
-  }, [membersData]);
 
   return (
     <div
