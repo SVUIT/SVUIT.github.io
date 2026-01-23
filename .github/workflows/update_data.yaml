@@ -1,0 +1,45 @@
+name: Notion to JSON Sync
+
+on:
+  workflow_dispatch: # Run manually when recovery is needed
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install dependencies
+        run: |
+          pip install requests python-slugify urllib3
+
+      - name: Run Sync Script
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          DATABASE_ID: ${{ secrets.DATABASE_ID }}
+        run: python scripts/fetch-members.py
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "[BOT] Update members from Notion"
+
+          branch: notion-data-update
+          delete-branch: true # Auto delete branch after PR is merged
+          title: "PR: Update members from Notion"
+          base: main
+          body: |
+            member data has been synchronized from Notion. Changes include:
+            - Update file: `src/data/notion_member.json`
+            - Update images in: `public/member_images/`
+          reviewers: thu4n, hlocuwu
