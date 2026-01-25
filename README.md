@@ -1,64 +1,104 @@
-# Study Vault - UIT
+# SVUIT - Study Vault of UIT
 
-Welcome to Study Vault, a modern web application built with React that serves as a comprehensive resource hub for students at UIT (University of Information Technology).
+**Website:** [https://svuit.org](https://svuit.org)
 
-## 🚀 Features
+## Introduction
 
-- 📚 Access to a vast collection of study materials
-- 🌈 Modern and responsive user interface
-- 🎨 Interactive elements with smooth animations
-- 🔍 Easy navigation and search functionality
-- 📱 Mobile-friendly design
+**SVUIT** (Study Vault of UIT) is a comprehensive Resource Hub designed exclusively for students of the University of Information Technology (UIT).
 
-## 🛠️ Technologies Used
+The project aims to aggregate, share, and continuously update essential resources, ranging from academic materials and reference projects to software perks and technical tools. It connects scattered resources into a unified ecosystem to support students in their learning and research journey.
 
-- ⚛️ React 18
-- 🎨 Styled Components
-- 🌟 React Icons
-- 🎭 Framer Motion (for animations)
-- 🎨 Custom CSS with modern design patterns
+## Features
 
-## 🚀 Getting Started
+This platform acts as the central gateway to the SVUIT ecosystem:
+
+* **SVUIT - MMTT:** A specialized repository for the Faculty of Computer Networks & Communications, featuring syllabi, lecture slides, exams, and capstone projects.
+* **Awesome Projects:** A showcase of high-quality tech products, open-source tools, and research topics developed by UIT students.
+* **UIT Resource Hub:** A collection of student benefits (GitHub Student Pack, JetBrains, Azure) and essential technical tools.
+
+## Technologies Used
+
+This project is built using modern web technologies to ensure performance and scalability:
+
+* **Core:** React 18
+* **Styling:** Styled Components & Custom CSS
+* **Data Source:** Notion API (Headless CMS)
+* **Animation:** Framer Motion
+* **PWA:** Workbox (Service Workers)
+* **CI/CD:** GitHub Actions
+
+## Getting Started
 
 ### Prerequisites
 
-- Node.js (v14 or higher)
-- npm (v6 or higher) or yarn
+* Node.js (v14 or higher)
+* npm (v6 or higher) or yarn
 
 ### Installation
 
+1. **Clone the repository:**
+```bash
+git clone https://github.com/SVUIT/SVUIT.github.io.git
+cd SVUIT.github.io
 
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
+```
 
-3. Start the development server:
-   ```bash
-   npm start
-   ```
 
-4. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+2. **Install dependencies:**
+```bash
+npm install
 
-## 📦 Available Scripts
+```
 
-- `npm start` - Runs the app in development mode
-- `npm test` - Launches the test runner
-- `npm run build` - Builds the app for production
-- `npm run eject` - Ejects from Create React App (use with caution)
 
-## 🌐 Live Demo
+3. **Start the development server:**
+```bash
+npm start
 
-Check out the live demo at [https://svuit.org](https://svuit.org)
+```
 
-## 🤝 Contributing
 
-Contributions are welcome! Please read our [contributing guidelines](https://svuit.org/mmtt/docs/contribute) to get started.
+The app will open at `http://localhost:3000`.
 
-## 📄 License
+## Available Scripts
+
+In the project directory, you can run:
+
+* `npm start`: Runs the app in development mode.
+* `npm test`: Launches the test runner.
+* `npm run build`: Builds the app for production. *Note: This process triggers the scripts to fetch fresh data from Notion.*
+
+## The Team
+
+This project is operated by a specialized group of UIT students:
+
+* **Operations Lead & Advisors:** Strategic direction and operational oversight.
+* **Platform Operations:** Infrastructure management and system deployment.
+* **Website Development:** Frontend development, UI/UX, and feature maintenance.
+* **Social Media:** Content management and community engagement.
+
+## Disclaimer
+
+* **Community Project:** SVUIT is a non-profit project initiated and maintained by students. It is **not** an official communication channel of the University of Information Technology (UIT).
+* **Liability:** All shared resources are for educational and reference purposes only. Users are responsible for verifying the accuracy of the information and using it responsibly.
+
+## Contributing
+
+We welcome contributions from the community!
+
+* **Bug Reports:** Use the "Report Bug" feature on the website to flag technical issues.
+* **Content:** We welcome contributions regarding documents, source code, or joining the development team.
+
+Please read our [Contributing Guidelines](https://svuit.org/mmtt/docs/contribute) before submitting a Pull Request.
+
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 📞 Contact
+## Contact
 
 For any inquiries, please contact us at [contact@svuit.org](mailto:contact@svuit.org) or visit our [website](https://svuit.org).
+
+---
+
+© 2026 SVUIT Team. All rights reserved.
