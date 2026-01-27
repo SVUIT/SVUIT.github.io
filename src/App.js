@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, lazy, Suspense, startTransition } from "react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import "./App.css";
 import membersData from "./data/notion_member.json";
 import { performanceConfig } from "./config/performance";
