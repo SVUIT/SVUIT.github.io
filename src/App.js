@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, lazy } from "react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import "./App.css";
 import membersData from "./data/notion_member.json";
 import { performanceConfig } from "./config/performance";
@@ -35,68 +35,6 @@ const FadeInOnScroll = lazy(
   () => import("./components/FadeInOnScroll/FadeInOnScroll"),
 );
 
-// Custom Cursor Component
-const CustomCursor = () => {
-  const cursorDot = useRef(null);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [isActive, setIsActive] = useState(false);
-
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      setPosition({ x: e.clientX, y: e.clientY });
-    };
-
-    const handleMouseDown = () => {
-      setIsActive(true);
-      setTimeout(() => setIsActive(false), 100);
-    };
-
-    const handleLinkHover = () => {
-      if (cursorDot.current) {
-        cursorDot.current.classList.add("active");
-      }
-    };
-
-    const handleLinkLeave = () => {
-      if (cursorDot.current) {
-        cursorDot.current.classList.remove("active");
-      }
-    };
-
-    // Add event listeners
-    window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("mousedown", handleMouseDown);
-
-    // Add hover effects for interactive elements
-    const interactiveElements = document.querySelectorAll(
-      'a, button, [role="button"], [tabindex]',
-    );
-    interactiveElements.forEach((el) => {
-      el.addEventListener("mouseenter", handleLinkHover);
-      el.addEventListener("mouseleave", handleLinkLeave);
-    });
-
-    return () => {
-      // Cleanup
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("mousedown", handleMouseDown);
-      interactiveElements.forEach((el) => {
-        el.removeEventListener("mouseenter", handleLinkHover);
-        el.removeEventListener("mouseleave", handleLinkLeave);
-      });
-    };
-  }, []);
-
-  return (
-    <div
-      ref={cursorDot}
-      className={`cursor-dot ${isActive ? "active" : ""}`}
-      style={{
-        transform: `translate(${position.x}px, ${position.y}px)`,
-      }}
-    />
-  );
-};
 
 const BackgroundDecorations = () => {
   const randomPositions = Array.from({ length: 20 }, () => ({
@@ -303,57 +241,30 @@ function App() {
       }
     `;
 
-    const cursorStyles = document.createElement("style");
-    cursorStyles.innerHTML = `
-      /* Hide all default cursors */
-      *, *::before, *::after, a, button, [role="button"], input, textarea, select, [tabindex] {
-        cursor: none !important;
-      }
-      
-      /* Custom dot cursor - consistent style */
-      .cursor-dot {
-        width: 10px;
-        height: 10px;
-        background-color: var(--primary);
-        position: fixed;
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 9999;
-        transform: translate(-50%, -50%);
-        transition: none;
-        mix-blend-mode: difference;
-        will-change: transform;
-        left: 0;
-        top: 0;
-      }
-    `;
-    document.head.appendChild(cursorStyles);
     document.head.appendChild(styleElement);
 
     return () => {
-      document.head.removeChild(cursorStyles);
       document.head.removeChild(styleElement);
     };
   }, []);
 
   return (
-    <div
-      className="app-cursor"
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        position: "relative",
-        overflow: "hidden",
-        background: "linear-gradient(180deg, #0a0e17 0%, #0f1a26 100%)",
-        zIndex: 1,
-        paddingBottom: 0,
-        margin: 0,
-        cursor: "none",
-      }}
-    >
-      <CustomCursor />
-      <BackgroundDecorations />
+    <Suspense fallback={<div style={{color: 'white', textAlign: 'center', padding: '2rem'}}>Loading...</div>}>
+      <div
+        className="app-cursor"
+        style={{
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          position: "relative",
+          overflow: "hidden",
+          background: "linear-gradient(180deg, #0a0e17 0%, #0f1a26 100%)",
+          zIndex: 1,
+          paddingBottom: 0,
+          margin: 0,
+        }}
+      >
+        <BackgroundDecorations />
       <div
         style={{
           flex: "0 1 auto",
@@ -1140,6 +1051,7 @@ function App() {
         </FadeInOnScroll>
       </div>
     </div>
+    </Suspense>
   );
 }
 
