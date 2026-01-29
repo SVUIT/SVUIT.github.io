@@ -14,7 +14,7 @@ This platform acts as the central gateway to the SVUIT ecosystem:
 
 * **SVUIT - MMTT:** A specialized repository for the Faculty of Computer Networks & Communications, featuring syllabi, lecture slides, exams, and capstone projects.
 * **Awesome Projects:** A showcase of high-quality tech products, open-source tools, and research topics developed by UIT students.
-* **UIT Resource Hub:** A collection of student benefits (GitHub Student Pack, JetBrains, Azure) and essential technical tools.
+* **UIT Resource Hub:** A collection of exclusive student benefits including GitHub Education, Microsoft 365, Azure, Canva, Notion, and other essential tools.
 
 ## Technologies Used
 
@@ -87,7 +87,7 @@ This project is operated by a specialized group of UIT students:
 We welcome contributions from the community!
 
 * **Bug Reports:** Use the "Report Bug" feature on the website to flag technical issues.
-* **Content:** We welcome contributions regarding documents, source code, or joining the development team.
+* **Content:** We welcome contributions regarding documents, source code, or general project improvements.
 
 Please read our [Contributing Guidelines](https://svuit.org/mmtt/docs/contribute) before submitting a Pull Request.
 
