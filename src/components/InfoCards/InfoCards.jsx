@@ -1,7 +1,7 @@
 import React from 'react';
 import './InfoCards.css';
 import FadeInOnScroll from '../FadeInOnScroll/FadeInOnScroll';
-import { FaBookOpen, FaCalendarAlt, FaBox } from 'react-icons/fa';
+import { FaBookOpen, FaCalendarAlt, FaBox, FaCalculator } from 'react-icons/fa';
 
 const InfoCards = () => {
   return (
@@ -26,7 +26,7 @@ const InfoCards = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Available Now
+            Truy Cập
           </a>
         </div>
       </FadeInOnScroll>
@@ -50,7 +50,7 @@ const InfoCards = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Available Now
+            Truy Cập
           </a>
         </div>
       </FadeInOnScroll>
@@ -75,7 +75,31 @@ const InfoCards = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Available Now
+            Truy Cập
+          </a>
+        </div>
+      </FadeInOnScroll>
+
+      {/* Quamon */}
+      <FadeInOnScroll direction="left" delay={400}>
+        <div className="info-card" style={{ marginLeft: '0.2rem' }}>
+          <div className="card-icon">
+            <FaCalculator className="icon" />
+          </div>
+
+          <h3 className="card-title">Quamon</h3>
+          <p className="card-description">
+            Ứng dụng hỗ trợ sinh viên quản lý điểm số, tính toán điểm trung bình (GPA) 
+            và theo dõi tiến độ học tập, giúp bạn lên chiến lược "qua môn" hiệu quả.
+          </p>
+
+          <a
+            className="card-badge"
+            href="https://quamon.svuit.org/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Truy Cập
           </a>
         </div>
       </FadeInOnScroll>
