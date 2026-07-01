@@ -643,6 +643,8 @@ function App() {
                       height: "150px",
                       display: "block",
                       transition: "transform 0.5s ease",
+                      objectFit: "cover",     
+                      objectPosition: "center",
                     }}
                     loading="lazy"
                   />
