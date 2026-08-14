@@ -46,7 +46,7 @@ const InfoCards = () => {
 
           <a
             className="card-badge"
-            href="https://svuit.org/"
+            href="https://svuit.org/mmtt/"
             target="_blank"
             rel="noopener noreferrer"
           >
