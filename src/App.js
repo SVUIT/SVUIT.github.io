@@ -21,7 +21,7 @@ const groupedData = (() => {
 
   Object.keys(groups).forEach((role) => {
     groups[role].sort((a, b) => {
-      // Đặt trọng số: Lead đứng số 1, Member số 2, Senior Advisor (hoặc rỗng) số 3
+      // Weight: Lead ranks 1st, Member ranks 2nd, and Senior Advisor (or blank/empty) ranks 3rd
       const getWeight = (pos) => pos === "Lead" ? 1 : (pos === "Member" ? 2 : 3);
       return getWeight(a.position) - getWeight(b.position);
     });
@@ -735,11 +735,11 @@ function App() {
                           height: "200px",
                           borderRadius: "50%",
                           overflow: "hidden",
-                          // Cập nhật logic màu viền 
+                          // Color border  
                           border: `3px solid ${
                             member.position === "Lead" || member.role === "Senior Advisor" 
                               ? (index % 2 === 0 ? "#7c4dff" : "#b388ff") 
-                              : "rgba(255, 255, 255, 0.7)" // Member sẽ có viền trắng còn lead viền tím
+                              : "rgba(255, 255, 255, 0.7)" // Members will have white border and leads will have purple
                           }`,
                           marginBottom: "0.5rem",
                         }}
@@ -769,7 +769,7 @@ function App() {
                           {member.name}
                         </p>
                         
-                        {/* THÊM BADGE CHỨC VỤ */}
+                        {/* Position added */}
                         {member.position && (
                           <span
                             style={{
