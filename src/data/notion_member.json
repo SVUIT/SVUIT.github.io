@@ -1,63 +1,13 @@
 [
     {
-        "name": "Nguyễn Thế Lập",
-        "role": "Website Development",
-        "image": "/member_images/nguyen_the_lap.jpg"
-    },
-    {
-        "name": "Nguyễn Hoàng Lộc",
+        "name": "Trần Phạm Bảo Trân",
         "role": "Platform Operations",
-        "image": "/member_images/nguyen_hoang_loc.jpg"
+        "image": "/member_images/tran_pham_bao_tran.jpg"
     },
     {
-        "name": "Trần Công Hải",
-        "role": "Senior Advisor",
-        "image": "/member_images/tran_cong_hai.jpg"
-    },
-    {
-        "name": "Nguyễn Thành An",
-        "role": "Social Media",
-        "image": "/member_images/nguyen_thanh_an.jpg"
-    },
-    {
-        "name": "Tống Võ Anh Thuận",
-        "role": "Operations Lead",
-        "image": "/member_images/tong_vo_anh_thuan.jpg"
-    },
-    {
-        "name": "Sơn Nguyễn Kỳ Duyên",
-        "role": "Social Media",
-        "image": "/member_images/son_nguyen_ky_duyen.jpg"
-    },
-    {
-        "name": "Đoàn Quốc An",
-        "role": "Social Media",
-        "image": "/member_images/doan_quoc_an.jpg"
-    },
-    {
-        "name": "Lê Huỳnh Quang Vũ",
-        "role": "Senior Advisor",
-        "image": "/default.png"
-    },
-    {
-        "name": "Phạm Việt Hoàng",
+        "name": "Ngô Lê Tấn Huy",
         "role": "Platform Operations",
-        "image": "/member_images/pham_viet_hoang.jpg"
-    },
-    {
-        "name": "Trương Đỗ Như Quỳnh",
-        "role": "Website Development",
-        "image": "/member_images/truong_do_nhu_quynh.jpg"
-    },
-    {
-        "name": "Đoàn Nguyễn Lâm",
-        "role": "Platform Operations",
-        "image": "/member_images/doan_nguyen_lam.jpg"
-    },
-    {
-        "name": "Đặng Chí Thành",
-        "role": "Platform Operations",
-        "image": "/member_images/dang_chi_thanh.jpg"
+        "image": "/member_images/ngo_le_tan_huy.jpg"
     },
     {
         "name": "Lý Nhật Minh",
@@ -75,13 +25,63 @@
         "image": "/member_images/trinh_hoai_an.jpg"
     },
     {
-        "name": "Ngô Lê Tấn Huy",
-        "role": "Platform Operations",
-        "image": "/member_images/ngo_le_tan_huy.jpg"
+        "name": "Nguyễn Thế Lập",
+        "role": "Website Development",
+        "image": "/member_images/nguyen_the_lap.jpg"
     },
     {
-        "name": "Trần Phạm Bảo Trân",
+        "name": "Nguyễn Thành An",
+        "role": "Social Media",
+        "image": "/member_images/nguyen_thanh_an.jpg"
+    },
+    {
+        "name": "Sơn Nguyễn Kỳ Duyên",
+        "role": "Social Media",
+        "image": "/member_images/son_nguyen_ky_duyen.jpg"
+    },
+    {
+        "name": "Đoàn Quốc An",
+        "role": "Social Media",
+        "image": "/member_images/doan_quoc_an.jpg"
+    },
+    {
+        "name": "Phạm Việt Hoàng",
         "role": "Platform Operations",
-        "image": "/member_images/tran_pham_bao_tran.jpg"
+        "image": "/member_images/pham_viet_hoang.jpg"
+    },
+    {
+        "name": "Trương Đỗ Như Quỳnh",
+        "role": "Website Development",
+        "image": "/member_images/truong_do_nhu_quynh.jpg"
+    },
+    {
+        "name": "Nguyễn Hoàng Lộc",
+        "role": "Platform Operations",
+        "image": "/member_images/nguyen_hoang_loc.jpg"
+    },
+    {
+        "name": "Trần Công Hải",
+        "role": "Senior Advisor",
+        "image": "/member_images/tran_cong_hai.jpg"
+    },
+    {
+        "name": "Tống Võ Anh Thuận",
+        "role": "Senior Advisor",
+        "image": "/member_images/tong_vo_anh_thuan.jpg"
+    },
+    {
+        "name": "Lê Huỳnh Quang Vũ",
+        "role": "Senior Advisor",
+        "image": "/default.png"
+    },
+    {
+        "name": "Đoàn Nguyễn Lâm",
+        "role": "Senior Advisor",
+        "image": "/member_images/doan_nguyen_lam.jpg"
+    },
+    {
+        "name": "Đặng Chí Thành",
+        "role": "Platform Operations",
+        "image": "/member_images/dang_chi_thanh.jpg"
     }
 ]
