@@ -19,6 +19,14 @@ const groupedData = (() => {
     return acc;
   }, {});
 
+  Object.keys(groups).forEach((role) => {
+    groups[role].sort((a, b) => {
+      // Weight: Lead ranks 1st, Member ranks 2nd, and Senior Advisor (or blank/empty) ranks 3rd
+      const getWeight = (pos) => pos === "Lead" ? 1 : (pos === "Member" ? 2 : 3);
+      return getWeight(a.position) - getWeight(b.position);
+    });
+  });
+
   const sortedGroups = {};
   ROLE_ORDER.forEach((role) => {
     if (groups[role]) {
@@ -145,7 +153,6 @@ function App() {
 
   // Resource hints for performance
   useEffect(() => {
-    // Add preconnect for external domains
     performanceConfig.resourceHints.forEach((hint) => {
       const link = document.createElement("link");
       link.rel = hint.rel;
@@ -155,7 +162,6 @@ function App() {
     });
 
     return () => {
-      // Cleanup on unmount
       performanceConfig.resourceHints.forEach((hint) => {
         const links = document.querySelectorAll(`link[href="${hint.href}"]`);
         links.forEach((link) => link.remove());
@@ -169,9 +175,7 @@ function App() {
     { label: "Thông báo", href: "https://svuit.org/mmtt/docs/ThongBao/index" },
   ];
 
-  // Register service worker and set up performance monitoring
   useEffect(() => {
-    // Register service worker if enabled
     if (performanceConfig.features.serviceWorker) {
       const { register } = require("./utils/serviceWorker");
       register({
@@ -189,12 +193,10 @@ function App() {
       });
     }
 
-    // Set initial visibility with a small delay
     const timer = setTimeout(() => {
       setIsVisible(true);
     }, 100);
 
-    // Cleanup function
     return () => {
       clearTimeout(timer);
     };
@@ -273,7 +275,7 @@ function App() {
           overflow: "hidden",
           opacity: isVisible ? 1 : 0,
           transition: "opacity 1s ease-in-out",
-          zIndex: 2, // Adjusted z-index
+          zIndex: 2, 
           marginBottom: "-1rem",
         }}
       >
@@ -708,11 +710,11 @@ function App() {
                   style={{
                     display: "flex",
                     flexDirection: "row",
-                    flexWrap: "wrap", // ← fix slider
+                    flexWrap: "wrap",
                     justifyContent: "center",
                     alignItems: "center",
                     gap: "2rem",
-                    overflow: "hidden", // ← remove horizontal scroll
+                    overflow: "hidden",
                     paddingBottom: "1rem",
                     width: "100%",
                   }}
@@ -726,13 +728,19 @@ function App() {
                         alignItems: "center",
                       }}
                     >
+                      
                       <div
                         style={{
                           width: "200px",
                           height: "200px",
                           borderRadius: "50%",
                           overflow: "hidden",
-                          border: `3px solid ${index % 2 === 0 ? "#7c4dff" : "#b388ff"}`,
+                          // Color border  
+                          border: `3px solid ${
+                            member.position === "Lead" || member.role === "Senior Advisor" 
+                              ? (index % 2 === 0 ? "#7c4dff" : "#b388ff") 
+                              : "rgba(255, 255, 255, 0.7)" // Members will have white border and leads will have purple
+                          }`,
                           marginBottom: "0.5rem",
                         }}
                       >
@@ -748,16 +756,38 @@ function App() {
                         />
                       </div>
 
-                      <p
-                        style={{
-                          color: "#fff",
-                          fontSize: "1.1rem",
-                          margin: "0.5rem 0",
-                          textAlign: "center",
-                        }}
-                      >
-                        {member.name}
-                      </p>
+                      <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                        <p
+                          style={{
+                            color: member.position === "Lead" ? "#b388ff" : "#fff",
+                            fontSize: "1.1rem",
+                            margin: "0.5rem 0 0.2rem 0",
+                            textAlign: "center",
+                            fontWeight: member.position === "Lead" ? "bold" : "normal",
+                          }}
+                        >
+                          {member.name}
+                        </p>
+                        
+                        {/* Position added */}
+                        {member.position && (
+                          <span
+                            style={{
+                              fontSize: "0.75rem",
+                              color: member.position === "Lead" ? "#fff" : "rgba(255, 255, 255, 0.6)",
+                              backgroundColor: member.position === "Lead" ? "rgba(179, 136, 255, 0.2)" : "transparent",
+                              border: member.position === "Lead" ? "1px solid rgba(179, 136, 255, 0.5)" : "none",
+                              padding: member.position === "Lead" ? "2px 8px" : "0",
+                              borderRadius: "10px",
+                              fontWeight: member.position === "Lead" ? "600" : "400",
+                              letterSpacing: "0.5px",
+                              textTransform: "uppercase"
+                            }}
+                          >
+                            {member.position}
+                          </span>
+                        )}
+                      </div>
                     </div>
                   ))}
                 </div>
